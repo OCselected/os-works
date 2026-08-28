@@ -1,0 +1,14 @@
+baseURL = "https://works.opensourceway.blog/"
+languageCode = "zh-CN"
+title = "「开源之道」作品"
+theme = "os-works"
+
+[params]
+  description = "「开源之道」作品 — 适兕著作系列"
+  author = "适兕"
+
+[params.fonts]
+  serif = "Source Serif 4, Noto Serif SC, Georgia, serif"
+  sans  = "Inter, Noto Sans SC, system-ui, sans-serif"
+
+[taxonomies]

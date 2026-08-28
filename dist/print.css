@@ -1,0 +1,106 @@
+/* print.css — A4 print styles for WeasyPrint PDF output */
+/* Applied AFTER site.css in pandoc --css order */
+
+@font-face { font-family: "Noto Serif SC"; src: url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap"); }
+
+@page {
+  size: A4;
+  margin: 2.5cm 2cm 2.5cm 2cm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: "Source Serif 4", "Noto Serif SC", serif;
+    font-size: 9pt;
+    color: #888;
+    letter-spacing: 0.05em;
+  }
+}
+
+body {
+  font-family: "Noto Serif SC", "Source Serif 4", Georgia, serif !important;
+  font-size: 10.5pt !important;
+  line-height: 1.75 !important;
+  color: #1A1A1A !important;
+  background: #FFFFFF !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+h1 {
+  font-family: "Noto Serif SC", serif !important;
+  font-size: 22pt !important;
+  font-weight: 700 !important;
+  color: #1B3B6B !important;
+  margin: 1.5em 0 0.8em 0 !important;
+  border-bottom: 2px solid #C9A961 !important;
+  padding-bottom: 0.3em !important;
+  page-break-after: avoid;
+}
+
+h2 {
+  font-family: "Noto Serif SC", serif !important;
+  font-size: 16pt !important;
+  font-weight: 600 !important;
+  color: #1B3B6B !important;
+  margin: 1.5em 0 0.6em 0 !important;
+  border-left: 3px solid #C9A961 !important;
+  padding-left: 0.6em !important;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-family: "Noto Serif SC", serif !important;
+  font-size: 13pt !important;
+  font-weight: 600 !important;
+  color: #8B7355 !important;
+  margin: 1.2em 0 0.5em 0 !important;
+  page-break-after: avoid;
+}
+
+p {
+  font-family: "Noto Serif SC", serif !important;
+  font-size: 10.5pt !important;
+  line-height: 1.75 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 0.8em 0 !important;
+  text-align: justify !important;
+  text-indent: 2em !important;
+}
+
+strong { color: #1B3B6B !important; font-weight: 600 !important; }
+
+blockquote {
+  margin: 1.2em 0 !important;
+  padding: 0.8em 1em !important;
+  border-left: 3px solid #C9A961 !important;
+  background: #F5F0E8 !important;
+  font-style: italic !important;
+  color: #333 !important;
+  font-size: 10pt !important;
+  page-break-inside: avoid;
+}
+
+blockquote p { text-indent: 0 !important; }
+
+ul, ol { margin: 0.8em 0 0.8em 2.2em !important; padding: 0 !important; }
+li { margin-bottom: 0.35em !important; }
+li p { text-indent: 0 !important; }
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 1.5em auto !important;
+  page-break-inside: avoid;
+}
+
+a { color: #1B3B6B !important; text-decoration: underline !important; }
+
+header, footer, nav, .topbar, .chapter-nav { display: none !important; }
+
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 1em 0 !important;
+  font-size: 10pt !important;
+}
+th, td { border: 1px solid #8B7355 !important; padding: 0.4em 0.6em !important; }
+th { background: #F5F0E8 !important; font-weight: 600 !important; color: #1B3B6B !important; }

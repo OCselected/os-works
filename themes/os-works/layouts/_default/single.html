@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="chapter">
+  <header class="chapter-header">
+    <h1>{{ .Title }}</h1>
+    <div class="chapter-meta">
+      {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
+      {{ if .Params.date }}<span>{{ .Params.date.Format "2006年01月02日" }}</span>{{ end }}
+    </div>
+  </header>
+  <div class="chapter-body">{{ .Content }}</div>
+
+  <nav class="chapter-nav">
+    {{ if eq .Section "network-wealth" }}
+      <a href="/network-wealth/">← 目录 <span>网络的财富</span></a>
+    {{ else }}
+      <a href="/history/">← 目录 <span>开源历史</span></a>
+    {{ end }}
+    <a href="/">返回首页 → <span>「开源之道」· 作品</span></a>
+  </nav>
+</article>
+{{ end }}

@@ -1,0 +1,43 @@
+{{ define "main" }}
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-mark">
+      <span class="mark-sig">道</span>
+      <div class="mark-meta">
+        <span class="mark-en">OPEN SOURCE</span>
+        <span class="mark-cn">「开源之道」· 作品</span>
+      </div>
+    </div>
+    <div class="hero-tagline">
+      <p>适兕著作系列</p>
+      <span class="tagline-en">By Kuosi · The Open Source Way</span>
+    </div>
+  </div>
+</header>
+
+<section class="works-grid">
+  {{ range .Site.Sections }}
+    {{ if eq .Type "book" }}
+      <a class="work-card" href="{{ .RelPermalink }}">
+        <div class="card-cover">
+          {{ if .Params.cover }}
+            <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }}">
+          {{ end }}
+        </div>
+        <div class="card-meta">
+          <span class="card-tag">{{ .Title | truncate 30 }}</span>
+          <span class="card-sub">{{ if .Params.author }}{{ .Params.author }}{{ else }}适兕{{ end }}</span>
+        </div>
+      </a>
+    {{ end }}
+  {{ end }}
+</section>
+
+<section class="home-about">
+  <div class="about-inner">
+    <h2>「开源之道」· 作品</h2>
+    <p>适兕以翻译、整理、原创三种方式，致力于将开源思想的核心文献引入中文语境。从本克莱的《网络的财富》到开源历史的系统梳理，作品横跨制度经济学、法律演化、文化批判与政治经济学四条分析脉络。</p>
+    <p class="about-quote">"开源之为思想的力量。"</p>
+  </div>
+</section>
+{{ end }}

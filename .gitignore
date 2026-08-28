@@ -1,0 +1,10 @@
+# OS files
+.DS_Store
+
+# Hugo build output
+/public/
+
+# Generated distribution files (built in CI)
+/dist/*.html
+/dist/*.pdf
+/dist/*.epub

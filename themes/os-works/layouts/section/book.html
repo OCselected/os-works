@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="book-toc">
+  <div class="toc-inner">
+    <div class="toc-header">
+      <h1>{{ .Title }}</h1>
+      <div class="toc-meta">
+        {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
+        {{ if .Params.description }}<span>描述：{{ .Params.description }}</span>{{ end }}
+      </div>
+      {{ if .Content }}
+        <div class="toc-intro">{{ .Content }}</div>
+      {{ end }}
+    </div>
+
+    <nav class="toc-list">
+      {{ $book := . }}
+      {{ $pages := where .Site.RegularPages "Section" $book.Section }}
+      {{ range sort $pages "Date" "desc" }}
+        <a class="toc-item" href="{{ .RelPermalink }}">
+          <span class="toc-num">{{ printf "%02d" (add (int (len $pages)) 1) }}</span>
+          <span class="toc-title">{{ .Title }}</span>
+          {{ if .Params.date }}<span class="toc-date">{{ .Params.date.Format "2006-01-02" }}</span>{{ end }}
+        </a>
+      {{ end }}
+    </nav>
+  </div>
+</section>
+{{ end }}
