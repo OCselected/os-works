@@ -55,4 +55,4 @@ build_book() {
 }
 
 build_book "网络财富" "network-wealth" "网络的财富：社会生产如何改变市场和自由" "network-wealth"
-build_book "开源历史" "history" "开源历史：从思想到运动" "history"
+build_book "开源之史" "history" "开源之史：从思想到运动" "history"
