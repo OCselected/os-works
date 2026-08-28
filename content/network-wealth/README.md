@@ -14,7 +14,7 @@ tags:
 - 开源之道
 title: "作者简介及译者的话"
 url: ""
-draft: true
+draft: false
 authors:
 - 「开源之道」·适兕
 ---

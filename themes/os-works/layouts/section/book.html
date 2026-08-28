@@ -16,18 +16,10 @@
       {{ end }}
     </div>
 
-    {{ $pages := where .Site.RegularPages "Section" .Section }}
-
-    {{ if $pages }}
-      <nav class="toc-list">
-        <h2 class="toc-heading">章节目录</h2>
-        {{ range sort $pages "File" }}
-          <a class="toc-item" href="{{ .RelPermalink }}">
-            <span class="toc-title">{{ .Title }}</span>
-            {{ if .Params.date }}<span class="toc-date">{{ .Params.date.Format "2006-01-02" }}</span>{{ end }}
-          </a>
-        {{ end }}
-      </nav>
+    {{ $slug := .Section }}
+    {{ $toc := readFile (printf "data/%s/toc.html" $slug) }}
+    {{ if $toc }}
+      <nav class="toc-list">{{ $toc | safeHTML }}</nav>
     {{ end }}
 
     {{ if .Params.douban }}

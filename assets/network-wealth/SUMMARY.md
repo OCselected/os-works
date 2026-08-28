@@ -1,0 +1,82 @@
+---
+draft: false
+---
+
+
+# 网络的财富：社会生产如何改变市场和自由
+
+* [作者介绍和译者的话](./readme.md)
+
+
+
+* [第一章：机会和挑战并存的时刻](./ch01-introduciton.md)
+
+## 第一部分 网络化的信息经济
+
+
+* [第二章：信息生产与创新的若干经济学基础](some-basic-economics-of-info.md)
+     * [当前信息生产系统的多样性战略](the-diversity-of-strategies.md)
+     * [排他权的深远影响](the-effects-of-exclusive-rights.md)
+     * [当信息生产遇到计算机网络](meets-the-computer-network.md)
+     * [数字环境中的强排他权](strong-exclusive-rights.md)
+* [第三章:对等生产和分享](peer-production-and-sharing.md)
+     * [自由和开源软件](free-open-source-software.md)
+     * [信息、知识和文化的对等生产](peer-produciton-of-information-knowledge-and-culture-generally.md) 
+* [第四章：社交生产的经济](the-economics-of-social-produciton.md)
+     * [激励](motivation.md)
+     * [社交生产：可行性条件和组织形式](social-production.md)
+     * [交易成本和效用](transaction-cost-and-efficiency.md)
+     * [数字化网络环境中的社交生产的涌现](the-emergence-of-social-production-in-the-digitally-networked-env.md)
+     * [社交生产的界面和基于市场的业务](the-interface-of-social-production-and-market-based-business.md)
+
+## [第二部分 私有财产和共同财产的政治经济学](part-2.md)
+
+* [第五章:个体自由：自治、信息和法律](individual-freedom-autonomy-information-and-law.md)
+     * [为自己、靠自己和与他人一起做更多事情的自由](freedom-to-do-more-for-oneself.md)
+     * [自治、私有财产和 Commons](autonomy-property-and-commons.md)
+     * [自治和信息环境](autonomy-and-the-information-environment.md)
+     * [自治、大型媒体和非市场的信息生产](autonomy-mass-media-nonmarket-information-producers.md)
+* [第六章：政治自由（上）：大众传媒的麻烦](the-trouble-with-mass-media.md)
+     * [自由公共平台或自由公共领域传播平台的设计特点](design-characteristics-of-a-communications-platform.md)
+     * [公共领域商业大众传媒平台的出现](the-emergence-of-the-commercial.md)
+     * [大众传媒的基本批判](basic-critiques-of-mass-media.md)
+* [第七章：政治自由（下）：网络化公共氛围的涌现](emergence-of-the-networked-public-sphere.md)
+     * [网络化通信的基本工具](basic-tools-of-networked-communication.md)
+     * [网络信息经济与公共领域的融合](networked-information-economy-meets-the-public-sphere.md)
+     * [对 "互联网具有民主化效应 "说法的批判](critiques-of-the-claims-that-the-internet-has-democratizing-effects.md)
+     * [互联网是过于混乱、过于集中，还是两者皆非？](is-the-internet-too-chaotic.md)
+     * [论幂律分布、网络拓扑和被倾听](on-power-law-distribution.md)
+     * [谁来扮演看门狗的功能？](who-will-play-the-watchdog-function.md)
+     * [利用网络通信摆脱专制控制](using-networked-communication-to-work-around-authoritarian-control.md)
+     * [迈向网络化的公共领域](toward-a-networked-public-spere.md)
+* [第八章：文化自由：可塑性与批判性兼具的文化](cultural-freedom-a-culture-both-plastic-and-critical.md)
+     * [自由主义政治理论的文化自由](cultural-freedom-in-liberal-political-theory.md)
+     * [互联网文化的透明度](the-transparency-of-internet-culture.md)
+     * [网络文化的可塑性： 高产值 fork 文化的未来](the-plasticiy-of-internet-culture.md)
+     * [参与性文化：走向政策](a-participatory-culture.md)
+* [第九章：正义和发展](justice-and-development.md)
+     * [自由主义正义理论与网络信息经济](liberal-theories-of-justice-and-the-networked-information-economy.md)
+     * [Commons-based 战略对于人类福利和发展](commons-based-strategies-for-human-welfare-and-development.md)
+     * [嵌入了信息的商品、工具、信息和知识](information-embedded-goods-and-tools-information-and-knowledge.md)
+     * [与人类发展倡议相关的信息产业的产业组织](industrial-orgznization-of-hdi-related-information-industries.md)
+     * [迈向采用 Commons-based 的发展战略](toward-adopting-commons-based-strategies-for-development.md)
+     * [食物和药品的 commons-based 研究](commons-based-research-for-food-and-medicines.md)
+     * [总结：Commons-based 的发展战略](commons-based-strategies-for-development-conclusion.md)
+* [第十章：社会纽带： 共同建立联系](social-ties-networking-together.md)
+     * [从 "虚拟共同体 "到瓦解恐惧](from-virtual-communities-to-fear-of-disintegration.md)
+     * [随着时间的推移，积极的一面逐渐显现](a-more-positive-picture-emerges-over-time.md)
+     * [互联网作为人类连接的平台](the-internet-as-a-platform-for-human-connection.md)
+     * [社交软件的涌现](the-emergence-of-social-software.md)
+     * [人类共同体和互联网](the-internet-and-human-community.md)
+
+## [第三部分 转型时期的自由政策](part-3.md)
+
+* [第十一章：数字环境的制度生态之争](the-battle-over-the-institutional-ecology-of-the-digital-environment.md)
+     * [制度生态和路径依赖](institutional-ecology-and-path-dependence.md)
+     * [绘制制度生态图的框架](a-framework-for-mapping-the-institutional-ecology.md)
+     * [物理层](physical-layer.md) 
+     * [逻辑层](the-logical-layer.md) 
+     * [内容层](the-content-layer.md) 
+     * [有关安全的问题](the-problem-of-security.md) 
+* [第十二章：结论：信息法律与政策的利害关系](conclusion-the-stakes-of-information-law-and-policy.md)
+

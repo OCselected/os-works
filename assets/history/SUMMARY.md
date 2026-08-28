@@ -1,0 +1,104 @@
+---
+categories:
+- 开源
+- 历史
+date: 2022-10-07T14:10:15+08:00
+description: "将文章凑成书，是需要努力的，不然就是乱七八糟，不知所谓的信息罢了。"
+keywords:
+- Open Source
+- Culture
+- Reading
+- Hitsory
+tags:
+- 历史故事
+- 开源之史
+title: "「开源之史」索引 —— 假设它是一本书的话"
+url: ""
+authors:
+- 「开源之道」·适兕
+---
+
+# 《开源之史》
+
+一部写给自己看的有关开源的历史。
+
+一部为了准备《开源之道》素材使用的个人资料收集。
+
+* [回顾：已有的开源之史书籍和论文](00-review-of-os-history-book-and-paper/.md)
+
+## 第一部分：该如何理解历史
+
+* [该如何思考开源的历史？](00-how-to-think-in-history-view/.md)
+
+
+## 第二部分：开源被忽略了什么？
+
+* [类比：人类历史上那些重要的暗流涌动](001-the-undercurrent-of-human-history/.md)
+* [真实世界中看到的开源和看不见的价值](002-what-is-seen-and-unseen-in-real-world/.md)
+
+## 第三部分：开源的源头
+
+* [开源的史前故事——高等院校和科研机构的代码开放与共享](00-the-power-of-open-source/.md)
+
+## 第四部分：开源许可的演化
+
+* [被迫的反击——捍卫开源知识财产的历程](02-00-ip-law-and-license-evolution-start/.md)
+* [知识财产常识及人类的对抗](02-01-ip-law-and-license-evolution-brief-common-knowledge/.md)
+* [软件之前的知识财产纠纷简史](02-01-001-ip-law-and-license-evolution-prehistory-software/.md)
+* [软件交易的需求——许可的诞生](02-02-ip-law-and-license-evolution-software-license-occur/.md)
+* [软件立法——从蛮荒到规制](02-03-ip-law-and-license-evolution-software-copyright-occur/.md)
+* [直面人性的暗面——致软件爱好者公开信始末](02-03-001-ip-law-and-license-evolution-microsoft-story/.md)
+* [独一无二的标识开源 —— 商标和品牌的保护极简史](02-03-002-open-source-trademark/.md)
+* [科学共同体的礼物——学术型开源许可的诞生](02-04-ip-law-and-license-evolution-os-software-license-occur/.md)
+* [软件版权的自我保护完善还是霸权的扩张 —— 二进制被正式纳入版权法](02-04-001-copyright-cover-binary/.md)
+* [夹缝中求生存——自由软件及GPL的艰难抗争](02-05-ip-law-and-license-evolution-gpl-born/.md)
+* [万维网的许可选择——和GPL擦肩而过](02-06-www-did-not-choose-gpl-and-open-public/.md)
+* [浏览器竞争下的创新模式——Mozilla公共许可](02-07-01-brower-war-failed-netscape-mpl/.md)
+* [开源作为商业策略——Apache 许可的改进与‘完善’](02-07-02-wired-mix-apache-and-ibm-license/.md)
+* [GPLv3 —— 软件自由的分裂还是捍卫？](02-08-freedom-forever-gplv3/.md)
+* [如何限制基于网络服务的闭源？从AGPL到SSPL，开源许可正在失控？](02-09-cloud-computer-and-new-non-os-license/.md)
+* [难辨真伪 —— 人人都可以开源许可下的困局](02-10-future-and-more-challenge/.md)
+* [君子协定 —— 联盟以对抗万恶的专利](02-11-os-and-software-patents/.md)
+* [开源遵从（合规）市场的形成与演变：开源的商业或信任基石](02-12-the-evloution-of-open-source-complance-marketing/.md)
+
+## 第五部分：计算机技术中开源的部分
+
+* [开源的软件史该如何表述](06-the-evolution-of-open-collaboration/.md)
+* [堆栈的演化与开源的增长](06-03-other-open-collaboration-based-source/.md)
+
+## 第六部分：开源文化溯源
+
+* [从反主流文化到未知的默认文化](04-from-counterculture-to-unkonwculture/.md)
+* [文化的重要作用 —— 开源的本质](04-00-culture-matters-os/.md)
+* [从两场改变软件格局的运动讲起](04-01-free-software-and-os-movement/.md)
+* [自由软件运动的源头——黑客文化简史](04-02-hacker-culture/.md)
+* [黑客诞生的来由——反主流文化之源](04-02-hacker-culture/.md)
+* [开源的发展镶嵌在更大的文化背景之中](04-04-rethink-open-source-culture/.md)
+* [开源一词发明前的世界](04-01-free-software-and-os-movement/.md)
+
+## 第七部分：不可或缺的力量——商业的探索与演化
+
+* [商业的发展——软件放弃许可费用的艰难探索](05-business-from-freedom-to-subscription/.md)
+* [法律经济秩序下的软件商业——开源的温床](05-business-from-freedom-to-subscription/.md)
+* [自由软件的商业模式 —— Cygnus 在许可之外的探索](05-01-emacs-and-cygnus-make-money/.md)
+* [不同的群体采用不同的许可 —— 双重许可下的商业与共同体](05-02-dual-licensing/.md)
+
+## 第八部分：软件的核心力量——开源下的协作演变
+
+* [协作的演化——从原子个体到全球开放协作](06-the-evolution-of-open-collaboration/.md)
+* [早期编码的中的协作](/06-00-hacker-culture-and-origin-collabration/)
+* [电子邮件的诞生与发展——程序协作的可能性](06-01-email-born-and-build-connection/.md)
+* [从文本差异补丁到分布式版本控制](06-02-from-patch-to-git-vcs-evolved/.md)
+
+## 第九部分：集体行动的保障与逻辑——开源机构与组织
+
+* [开源的治理之道——非营利组织与解决难题](07-os-organzition-and-governance/.md)
+* [自由软件基金会的出现及其深远影响](07-01-the-rise-of-linux-foundataion.md.md)
+* [OSI 的缔造和历史地位](07-008-birth-of-osi.md)
+* [推动 GNU/Linux —— 企业联盟式的非营利基金会LF的诞生与发展](07-01-the-rise-of-linux-foundataion/.md)
+* [Apache 软件基金会的诞生与崛起](07-009-apache-foundation-born/.md)
+
+
+## 关于作者
+
+![](/public/kuosi-face-of-os.png)「发现开源三部曲」（[《开源之迷》](posts/book-of-open-source/the-fascinating-of-open-source/)已出版，《开源之道》《开源之思》《开源之商》撰写中。）作者，「开源之道：致力于开源相关思想、知识和价值的探究、推动」主创。
