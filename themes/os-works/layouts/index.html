@@ -16,17 +16,25 @@
 </header>
 
 <section class="works-grid">
-  {{ range .Site.Sections }}
+  {{ $sections := .Site.Sections }}
+  {{ range sort $sections "Params.date" }}
     {{ if eq .Type "book" }}
       <a class="work-card" href="{{ .RelPermalink }}">
         <div class="card-cover">
           {{ if .Params.cover }}
             <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }}">
           {{ end }}
+          {{ if eq .Params.book_type "published" }}
+            <span class="card-badge">已出版</span>
+          {{ else }}
+            <span class="card-badge badge-online">在线读物</span>
+          {{ end }}
         </div>
         <div class="card-meta">
           <span class="card-tag">{{ .Title | truncate 30 }}</span>
           <span class="card-sub">{{ if .Params.author }}{{ .Params.author }}{{ else }}适兕{{ end }}</span>
+          {{ if .Params.publisher }}<span class="card-pub">{{ .Params.publisher | truncate 20 }}</span>{{ end }}
+          {{ if .Params.rating }}<span class="card-rating">★ {{ .Params.rating }}</span>{{ end }}
         </div>
       </a>
     {{ end }}

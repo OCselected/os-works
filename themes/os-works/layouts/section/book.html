@@ -5,24 +5,45 @@
       <h1>{{ .Title }}</h1>
       <div class="toc-meta">
         {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
-        {{ if .Params.description }}<span>描述：{{ .Params.description }}</span>{{ end }}
+        {{ if .Params.author }}<span>·</span>{{ end }}
+        {{ if .Params.publisher }}<span>{{ .Params.publisher }}</span>{{ end }}
       </div>
+      {{ if .Params.description }}
+        <div class="toc-desc">{{ .Params.description }}</div>
+      {{ end }}
       {{ if .Content }}
         <div class="toc-intro">{{ .Content }}</div>
       {{ end }}
     </div>
 
-    <nav class="toc-list">
-      {{ $book := . }}
-      {{ $pages := where .Site.RegularPages "Section" $book.Section }}
-      {{ range sort $pages "Date" "desc" }}
-        <a class="toc-item" href="{{ .RelPermalink }}">
-          <span class="toc-num">{{ printf "%02d" (add (int (len $pages)) 1) }}</span>
-          <span class="toc-title">{{ .Title }}</span>
-          {{ if .Params.date }}<span class="toc-date">{{ .Params.date.Format "2006-01-02" }}</span>{{ end }}
+    {{ $pages := where .Site.RegularPages "Section" .Section }}
+
+    {{ if $pages }}
+      <nav class="toc-list">
+        <h2 class="toc-heading">章节目录</h2>
+        {{ range sort $pages "File" }}
+          <a class="toc-item" href="{{ .RelPermalink }}">
+            <span class="toc-title">{{ .Title }}</span>
+            {{ if .Params.date }}<span class="toc-date">{{ .Params.date.Format "2006-01-02" }}</span>{{ end }}
+          </a>
+        {{ end }}
+      </nav>
+    {{ end }}
+
+    {{ if .Params.douban }}
+      <div class="toc-douban">
+        <a href="{{ .Params.douban }}" target="_blank" rel="noopener">
+          📖 在豆瓣阅读更多书评 →
         </a>
-      {{ end }}
-    </nav>
+      </div>
+    {{ end }}
+
+    {{ if and .Params.pdf_url }}
+      <div class="toc-downloads">
+        <a href="{{ .Params.pdf_url }}" class="download-btn">⬇ PDF 下载</a>
+        {{ if .Params.epub_url }}<a href="{{ .Params.epub_url }}" class="download-btn">⬇ EPUB 下载</a>{{ end }}
+      </div>
+    {{ end }}
   </div>
 </section>
 {{ end }}
