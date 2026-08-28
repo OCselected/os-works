@@ -1,0 +1,72 @@
+# GitHub Actions workflow — 部署 os-works 到 GitHub Pages
+# 手动保存为 .github/workflows/deploy.yml 并推送到 main 分支
+# 需要在 GitHub UI 上先启用 Pages（Settings → Pages → GitHub Actions）
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      dist-dir: public
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Hugo
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.145.0'
+
+      # Build Hugo site → public/
+      - name: Hugo build
+        run: |
+          mkdir -p public
+          hugo --minify -d public
+
+      # Install WeasyPrint (PDF engine)
+      - name: Install WeasyPrint + fonts
+        run: |
+          pip install weasyprint>=60
+          sudo apt-get install -y fonts-noto-cjk fonts-noto-core
+
+      # Build PDF + EPUB → public/dist/
+      - name: Build PDF/EPUB
+        env:
+          WEASYPRINT: weasyprint
+        run: |
+          bash build-dist.sh
+          mkdir -p public/dist
+          cp dist/*.pdf dist/*.epub public/dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public

@@ -6,7 +6,8 @@ REPO=$(cd "$(dirname "$0")" && pwd)
 DIST="$REPO/dist"
 mkdir -p "$DIST"
 
-WEASYPRINT="/home/lee/.hermes/hermes-agent/venv/bin/weasyprint"
+WEASYPRINT="${WEASYPRINT:-/home/lee/.hermes/hermes-agent/venv/bin/weasyprint}"
+command -v "$WEASYPRINT" >/dev/null 2>&1 || [ -x "$WEASYPRINT" ] || { echo "weasyprint not found at $WEASYPRINT"; exit 1; }
 PANDOC="pandoc"
 
 build_book() {

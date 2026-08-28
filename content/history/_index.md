@@ -1,5 +1,5 @@
 ---
-title: "开源历史：从思想到运动"
+title: "开源之史：从思想到运动"
 slug: "history"
 date: 2022-03-29
 type: book

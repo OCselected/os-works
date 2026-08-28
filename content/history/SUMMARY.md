@@ -24,7 +24,7 @@ authors:
 
 一部为了准备《开源之道》素材使用的个人资料收集。
 
-* [回顾：已有的开源历史书籍和论文](posts/history-of-open-source/00-review-of-os-history-book-and-pape/)
+* [回顾：已有的开源之史书籍和论文](posts/history-of-open-source/00-review-of-os-history-book-and-pape/)
 
 ## 第一部分：该如何理解历史
 
