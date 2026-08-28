@@ -1,0 +1,139 @@
+@font-face { font-family: "Noto Serif SC"; font-weight: 300; src: url(https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap); }
+@font-face { font-family: "Noto Sans SC"; font-weight: 300; src: url(https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&display=swap); }
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --prussian:#1B3B6B;
+  --ink:#1A1A1A;
+  --muted:#666;
+  --copper:#8B7355;
+  --cream:#F5F0E8;
+  --paper:#EDE7DA;
+  --accent:#C9A961;
+  --deep:#0F1F3D;
+}
+
+html{scroll-behavior:smooth;font-family:"Source Serif 4","Noto Serif SC",Georgia,serif}
+body{font-size:16px;line-height:1.8;color:var(--ink);background:#FFFFFF;font-weight:400}
+
+a{color:inherit;text-decoration:none}
+
+/* ── Topbar ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--prussian);
+  padding:0.7rem clamp(1.5rem,4vw,5rem);
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:"Inter","Noto Sans SC",sans-serif;
+  font-size:0.65rem;color:var(--cream);
+  letter-spacing:0.24em;text-transform:uppercase;
+  border-bottom:1px solid rgba(217,169,97,0.35);
+  box-shadow:0 1px 8px rgba(0,0,0,0.15);
+}
+.topbar-brand{font-family:"Noto Serif SC",serif;font-weight:600;font-size:0.8rem;letter-spacing:0.05em;color:var(--accent)}
+.topbar-section{opacity:0.75}
+
+/* ── Hero ── */
+.hero{
+  padding:7rem clamp(1.5rem,4vw,5rem) 3rem;
+  background:linear-gradient(135deg,var(--deep) 0%,var(--prussian) 60%,#2A4A7D 100%);
+  border-bottom:2px solid var(--accent);
+  position:relative;
+}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--copper);opacity:0.4}
+.hero-inner{max-width:900px;margin:0 auto;text-align:left}
+.hero-mark{display:flex;align-items:flex-end;gap:1.5rem;margin-bottom:2rem}
+.mark-sig{font-family:"Noto Serif SC",serif;font-size:5rem;font-weight:700;color:var(--accent);line-height:0.9;letter-spacing:0}
+.mark-meta{display:flex;flex-direction:column;gap:0.3rem;padding-bottom:0.5rem}
+.mark-en{font-family:"Inter",sans-serif;font-size:0.7rem;letter-spacing:0.28em;color:var(--cream);opacity:0.85}
+.mark-cn{font-family:"Noto Serif SC",serif;font-size:1rem;font-weight:400;color:var(--cream);letter-spacing:0.05em}
+.hero-tagline{font-family:"Noto Serif SC",serif;color:var(--cream)}
+.hero-tagline p{font-size:1.15rem;font-weight:300;letter-spacing:0.03em;margin-bottom:0.5rem}
+.tagline-en{display:block;font-family:"Inter",sans-serif;font-size:0.7rem;letter-spacing:0.22em;color:var(--accent);text-transform:uppercase}
+
+/* ── Works grid ── */
+.works-grid{
+  max-width:1000px;margin:4rem auto;padding:0 clamp(1.5rem,4vw,5rem);
+  display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:2rem;
+}
+@media (max-width:900px){
+  .works-grid{grid-template-columns:repeat(auto-fill, minmax(280px,1fr))}
+}
+.work-card{display:flex;gap:1rem;padding:1rem;background:var(--cream);border:1px solid var(--copper);border-radius:2px;transition:transform 0.25s,box-shadow 0.25s,background 0.25s;position:relative}
+.work-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(27,59,107,0.15);background:#fff}
+.work-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0.05);transform-origin:left;transition:transform 0.3s}
+.work-card:hover::before{transform:scaleX(1)}
+.card-cover{flex-shrink:0;width:90px;height:126px;overflow:hidden;background:var(--paper);display:flex;align-items:center;justify-content:center;position:relative}
+.card-cover img{width:100%;height:100%;object-fit:cover}
+.card-badge{position:absolute;top:4px;left:4px;background:var(--prussian);color:var(--accent);font-family:"Inter","Noto Sans SC",sans-serif;font-size:0.55rem;letter-spacing:0.08em;padding:2px 6px;border-radius:1px;text-transform:uppercase;font-weight:500}
+.card-badge.badge-online{background:var(--copper);color:#fff}
+.card-meta{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.card-tag{font-family:"Noto Serif SC",serif;font-weight:600;font-size:0.9rem;color:var(--prussian);line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-sub{font-family:"Noto Serif SC",serif;font-size:0.75rem;color:var(--muted);letter-spacing:0.03em}
+.card-pub{font-family:"Inter","Noto Sans SC",sans-serif;font-size:0.65rem;color:var(--muted);letter-spacing:0.05em;margin-top:0.2rem}
+.card-rating{font-family:"Source Serif 4",serif;font-size:0.75rem;color:var(--accent);font-weight:500}
+
+/* ── About section ── */
+.home-about{
+  max-width:750px;margin:5rem auto 0;padding:2.5rem clamp(1.5rem,4vw,5rem);
+  text-align:center;border-top:1px solid rgba(139,115,85,0.2);
+}
+.about-inner h2{font-family:"Noto Serif SC",serif;font-weight:700;font-size:1.6rem;color:var(--prussian);margin-bottom:1.2rem;letter-spacing:0.02em}
+.about-inner p{font-family:"Noto Serif SC",serif;font-weight:300;color:var(--ink);line-height:1.9;font-size:0.95rem;text-align:justify}
+.about-quote{font-family:"Noto Serif SC",serif;font-weight:400;font-size:1.1rem;color:var(--prussian);margin-top:1.5rem;letter-spacing:0.04em;border:none}
+
+/* ── Footer ── */
+footer{background:var(--deep);color:var(--cream);padding:2rem clamp(1.5rem,4vw,5rem);margin-top:4rem}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:"Inter","Noto Sans SC",sans-serif;font-size:0.75rem;letter-spacing:0.1em;opacity:0.85}
+.footer-inner a{color:var(--accent);transition:opacity 0.2s}
+.footer-inner a:hover{opacity:0.75}
+
+/* ── Book TOC ── */
+.book-toc{padding:5rem clamp(1.5rem,4vw,5rem) 3rem;max-width:800px;margin:0 auto}
+.toc-inner{}
+.toc-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--copper)}
+.toc-header h1{font-family:"Noto Serif SC",serif;font-weight:700;font-size:1.75rem;color:var(--prussian);margin-bottom:0.8rem;line-height:1.4}
+.toc-meta{display:flex;flex-wrap:wrap;gap:0.5rem 1.5rem;font-family:"Noto Serif SC",serif;font-size:0.85rem;color:var(--muted);letter-spacing:0.03em}
+.toc-meta span{display:inline-flex;align-items:center}
+.toc-count{font-family:"Inter",sans-serif;font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);background:var(--cream);padding:0.25rem 0.6rem;border-radius:1px;text-transform:uppercase}
+.toc-intro{margin-top:1.2rem;font-family:"Noto Serif SC",serif;font-size:0.95rem;color:var(--ink);line-height:1.9;font-weight:300}
+.toc-list{display:flex;flex-direction:column;gap:0.4rem}
+.toc-item{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;padding:0.9rem 0.5rem;border-bottom:1px solid rgba(139,115,85,0.15);align-items:baseline;transition:padding-left 0.2s}
+.toc-item:hover{padding-left:1rem;background:var(--cream);margin:0 -0.5rem;padding-right:0.5rem}
+.toc-num{font-family:"Source Serif 4",serif;font-size:0.85rem;color:var(--accent);letter-spacing:0.05em;font-weight:400;min-width:2.5rem}
+.toc-title{font-family:"Noto Serif SC",serif;font-size:0.95rem;color:var(--ink);line-height:1.4;flex:1}
+.toc-item:hover .toc-title{color:var(--prussian)}
+.toc-date{font-family:"Inter",sans-serif;font-size:0.7rem;color:var(--muted);letter-spacing:0.05em}
+.toc-heading{font-family:"Noto Serif SC",serif;font-size:1.1rem;color:var(--prussian);font-weight:600;margin-bottom:0.5rem;letter-spacing:0.02em}
+.toc-desc{font-family:"Noto Serif SC",serif;font-size:0.9rem;color:var(--muted);margin-top:0.5rem;line-height:1.7;font-style:italic}
+.book-details{margin:2rem 0}
+.book-details table{width:100%;border-collapse:collapse;font-size:0.85rem;font-family:"Noto Serif SC",serif}
+.book-details th{text-align:left;padding:0.5rem 0.8rem;color:var(--muted);font-weight:400;border-bottom:1px solid rgba(139,115,85,0.2);width:30%}
+.book-details td{padding:0.5rem 0.8rem;color:var(--ink);border-bottom:1px solid rgba(139,115,85,0.15)}
+.toc-douban{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(139,115,85,0.2)}
+.toc-douban a{font-family:"Noto Serif SC",serif;font-size:0.9rem;color:var(--prussian);transition:color 0.2s}
+.toc-douban a:hover{color:var(--accent)}
+.toc-downloads{margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
+.download-btn{font-family:"Inter","Noto Sans SC",sans-serif;font-size:0.75rem;padding:0.5rem 1rem;border:1px solid var(--copper);color:var(--prussian);transition:all 0.2s;letter-spacing:0.05em}
+.download-btn:hover{background:var(--cream);border-color:var(--accent)}
+
+/* ── Chapter page ── */
+.chapter{max-width:720px;margin:0 auto;padding:5rem clamp(1.5rem,4vw,5rem) 3rem}
+.chapter-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:2px solid var(--accent)}
+.chapter-header h1{font-family:"Noto Serif SC",serif;font-weight:700;font-size:1.6rem;color:var(--prussian);line-height:1.4;margin-bottom:1rem}
+.chapter-meta{display:flex;flex-wrap:wrap;gap:0.5rem 1.5rem;font-family:"Noto Serif SC",serif;font-size:0.85rem;color:var(--muted)}
+.chapter-body{font-family:"Noto Serif SC",serif;font-size:1.05rem;line-height:2;color:var(--ink)}
+.chapter-body p{margin-bottom:1.3rem;text-align:justify;text-indent:2em}
+.chapter-body h1,.chapter-body h2,.chapter-body h3{font-family:"Noto Serif SC",serif;color:var(--prussian);margin:1.8rem 0 0.8rem;font-weight:600}
+.chapter-body h2{font-size:1.25rem;border-left:3px solid var(--accent);padding-left:0.8rem}
+.chapter-body h3{font-size:1.1rem;color:var(--copper)}
+.chapter-body strong{color:var(--prussian);font-weight:600}
+.chapter-body blockquote{margin:1.5rem 0;padding:1rem 1.2rem;border-left:3px solid var(--accent);background:var(--cream);font-style:italic;color:var(--ink);font-size:0.95rem}
+.chapter-body img{max-width:100%;height:auto;margin:1.5rem auto;display:block;border-radius:2px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.chapter-body ul,.chapter-body ol{margin:1rem 0 1rem 2rem}
+.chapter-body li{margin-bottom:0.5rem}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(139,115,85,0.2);font-family:"Inter","Noto Sans SC",sans-serif}
+.chapter-nav a{font-size:0.8rem;letter-spacing:0.05em;color:var(--prussian);padding:0.6rem 1rem;border:1px solid var(--copper);transition:background 0.2s}
+.chapter-nav a:hover{background:var(--cream)}
+.chapter-nav a span{font-family:"Noto Serif SC",serif;color:var(--muted);display:block;font-size:0.75rem;margin-top:0.2rem}
