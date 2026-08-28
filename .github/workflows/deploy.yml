@@ -27,7 +27,7 @@ jobs:
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.145.0'
+          hugo-version: '0.164.0'
 
       # Build Hugo site → public/
       - name: Hugo build
@@ -36,20 +36,20 @@ jobs:
           hugo --minify -d public
 
       # Install WeasyPrint + pandoc + fonts
-      - name: Install build tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc fonts-noto-cjk fonts-noto-core
-          pip install weasyprint>=60
+      #- name: Install build tools
+      #  run: |
+      #    sudo apt-get update
+      #    sudo apt-get install -y pandoc fonts-noto-cjk fonts-noto-core
+      #    pip install weasyprint>=60
 
       # Build PDF + EPUB → public/dist/
-      - name: Build PDF/EPUB
-        env:
-          WEASYPRINT: weasyprint
-        run: |
-          bash build-dist.sh
-          mkdir -p public/dist
-          cp dist/*.pdf dist/*.epub public/dist/
+      # - name: Build PDF/EPUB
+      #  env:
+      #    WEASYPRINT: weasyprint
+      #  run: |
+      #    bash build-dist.sh
+      #    mkdir -p public/dist
+      #    cp dist/*.pdf dist/*.epub public/dist/
       # Copy CNAME (custom domain) into public/
       - name: Copy CNAME
         run: cp CNAME public/
