@@ -361,22 +361,22 @@ footer{background:var(--deep);color:var(--cream);padding:2rem clamp(1.5rem,4vw,5
   transition: all 0.2s ease;
 }
 
-.btn-primary {
+a.btn-primary {
   background: var(--prussian, #1E3A5F);
   color: #fff;
 }
 
-.btn-primary:hover {
+a.btn-primary:hover {
   background: var(--copper, #B4A078);
 }
 
-.btn-ghost {
+a.btn-ghost {
   background: transparent;
   color: var(--prussian, #1E3A5F);
   border: 1px solid rgba(30, 58, 95, 0.3);
 }
 
-.btn-ghost:hover {
+a.btn-ghost:hover {
   border-color: var(--copper, #B4A078);
   color: var(--copper, #B4A078);
 }
@@ -758,4 +758,45 @@ footer{background:var(--deep);color:var(--cream);padding:2rem clamp(1.5rem,4vw,5
 
 .book-body .back-to-book:hover {
   text-decoration: underline;
+}
+
+/* 页脚链接：低调但有下划线暗示可点击 */
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-link:hover {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+
+/* 页脚「开源之道」链接：低调但带下划线，hover 变古铜色 */
+.footer-inner .footer-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  padding-bottom: 1px;
+  opacity: 1;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-inner .footer-link:hover {
+  color: var(--copper);
+  border-color: var(--copper);
+  opacity: 1;
+}
+
+/* 页脚链接：低调但有下划线暗示可点击 */
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-link:hover {
+  color: var(--copper);
+  border-color: var(--copper);
 }
