@@ -25,18 +25,27 @@
     </div>
     {{ else }}
     <div class="toc-header">
-      <h1>{{ .Title }}</h1>
-      <div class="toc-meta">
-        {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
-        {{ if .Params.author }}<span>·</span>{{ end }}
-        {{ if .Params.publisher }}<span>{{ .Params.publisher }}</span>{{ end }}
+      <div class="toc-header-inner">
+        {{ if .Params.cover }}
+        <div class="toc-cover">
+          <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }} 封面">
+        </div>
+        {{ end }}
+        <div class="toc-header-text">
+          <h1>{{ .Title }}</h1>
+          <div class="toc-meta">
+            {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
+            {{ if .Params.author }}<span>·</span>{{ end }}
+            {{ if .Params.publisher }}<span>{{ .Params.publisher }}</span>{{ end }}
+          </div>
+          {{ if .Params.description }}
+            <div class="toc-desc">{{ .Params.description }}</div>
+          {{ end }}
+          {{ if .Content }}
+            <div class="toc-intro">{{ .Content }}</div>
+          {{ end }}
+        </div>
       </div>
-      {{ if .Params.description }}
-        <div class="toc-desc">{{ .Params.description }}</div>
-      {{ end }}
-      {{ if .Content }}
-        <div class="toc-intro">{{ .Content }}</div>
-      {{ end }}
     </div>
 
     {{ $slug := .Section }}
