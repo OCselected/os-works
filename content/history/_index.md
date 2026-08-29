@@ -6,8 +6,8 @@ type: book
 cover: "history-cover.jpeg"
 author: "适兕"
 description: "开源运动的法律、文化、思想、权力四维历史叙事"
-pdf_url: "https://github.com/OCselected/os-works/releases/download/books-pdf/history.pdf"
-epub_url: "https://github.com/OCselected/os-works/releases/download/books-epub/history.epub"
+pdf_url: "/dist/history.pdf"
+epub_url: "/dist/history.epub"
 cascade:
   type: chapter
 ---
