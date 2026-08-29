@@ -124,6 +124,81 @@ footer{background:var(--deep);color:var(--cream);padding:2rem clamp(1.5rem,4vw,5
 .download-btn{font-family:"Inter","Noto Sans SC",sans-serif;font-size:0.75rem;padding:0.5rem 1rem;border:1px solid var(--copper);color:var(--prussian);transition:all 0.2s;letter-spacing:0.05em}
 .download-btn:hover{background:var(--cream);border-color:var(--accent)}
 
+/* 右上角下载按钮（fixed 定位，紧贴顶栏） */
+.book-download-corner{
+  position: fixed;
+  top: 72px;                    /* 顶栏高度 + 留白 */
+  right: 24px;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
+  animation: cornerFadeIn 0.4s ease-out;
+}
+
+@keyframes cornerFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.book-download-corner .download-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  font-family: "Inter","Noto Sans SC",sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.book-download-corner .download-btn-solid{
+  background: var(--prussian, #1E3A5F);
+  color: #fff;
+  border: 1px solid var(--prussian, #1E3A5F);
+}
+
+.book-download-corner .download-btn-solid:hover{
+  background: var(--copper, #B4A078);
+  border-color: var(--copper, #B4A078);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.book-download-corner .download-btn-outline{
+  background: rgba(255,255,255,0.95);
+  color: var(--prussian, #1E3A5F);
+  border: 1.5px solid var(--copper, #B4A078);
+  backdrop-filter: blur(4px);
+}
+
+.book-download-corner .download-btn-outline:hover{
+  background: var(--copper, #B4A078);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.book-download-corner .download-btn svg{
+  flex-shrink: 0;
+}
+
+/* 响应式：窄屏把按钮压小 */
+@media (max-width: 640px) {
+  .book-download-corner{
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+  }
+  .book-download-corner .download-btn{
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
 /* ── Chapter page ── */
 .chapter{max-width:720px;margin:0 auto;padding:5rem clamp(1.5rem,4vw,5rem) 3rem}
 .chapter-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:2px solid var(--accent)}

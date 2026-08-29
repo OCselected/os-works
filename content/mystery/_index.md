@@ -4,7 +4,7 @@ slug: "mystery"
 date: 2022-02-10T00:00:00+08:00
 type: book
 book_type: published
-cover: "/static/mystery-cover.jpg"
+cover: "mystery-cover.jpg"
 author: "适兕"
 publisher: "人民邮电出版社 · 异步图书 · 卷积传媒"
 isbn: "9787115578495"
@@ -20,7 +20,7 @@ cascade:
 
 <div class="book-hero">
   <div class="book-hero-cover">
-    <img src="/static/mystery-cover.jpg" alt="《开源之迷》封面">
+    <img src="/mystery-cover.jpg" alt="《开源之迷》封面">
   </div>
   <div class="book-hero-text">
     <div class="book-series">发现开源三部曲 · 第一部</div>

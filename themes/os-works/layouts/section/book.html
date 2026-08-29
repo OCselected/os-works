@@ -1,4 +1,20 @@
 {{ define "main" }}
+{{/* 右上角下载按钮（fixed 定位，仅当有 pdf_url 时显示） */}}
+{{ if .Params.pdf_url }}
+<div class="book-download-corner">
+  <a href="{{ .Params.pdf_url }}" class="download-btn download-btn-solid" title="下载 PDF 版">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    PDF
+  </a>
+  {{ if .Params.epub_url }}
+  <a href="{{ .Params.epub_url }}" class="download-btn download-btn-outline" title="下载 EPUB 版">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    EPUB
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+
 <section class="book-toc">
   <div class="toc-inner">
 
@@ -34,13 +50,6 @@
         <a href="{{ .Params.douban }}" target="_blank" rel="noopener">
           📖 在豆瓣阅读更多书评 →
         </a>
-      </div>
-    {{ end }}
-
-    {{ if .Params.pdf_url }}
-      <div class="toc-downloads">
-        <a href="{{ .Params.pdf_url }}" class="download-btn">⬇ PDF 下载</a>
-        {{ if .Params.epub_url }}<a href="{{ .Params.epub_url }}" class="download-btn">⬇ EPUB 下载</a>{{ end }}
       </div>
     {{ end }}
     {{ end }}
