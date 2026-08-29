@@ -1,73 +1,157 @@
 ---
-title: "开源之迷：发现开源三部曲之一"
+title: "《开源之迷》"
 slug: "mystery"
-date: 2022-02-10
+date: 2022-02-10T00:00:00+08:00
 type: book
 book_type: published
-cover: "mystery-cover.jpg"
+cover: "/static/mystery-cover.jpg"
 author: "适兕"
-publisher: "人民邮电出版社 · 异步图书"
+publisher: "人民邮电出版社 · 异步图书 · 卷积传媒"
 isbn: "9787115578495"
 pages: 376
 douban_url: "https://book.douban.com/subject/35716759/"
 rating: 7.2
 reviews: "75"
-description: "发现开源三部曲之一 —— 从大众视野出发，全面构建开源的立体世界"
+hero: true
+description: "发现开源三部曲之一 —— 从大众视野出发，构建开源的立体世界"
 cascade:
-  type: chapter
+  type: book
 ---
 
-# 《开源之迷》
+<div class="book-hero">
+  <div class="book-hero-cover">
+    <img src="/static/mystery-cover.jpg" alt="《开源之迷》封面">
+  </div>
+  <div class="book-hero-text">
+    <div class="book-series">发现开源三部曲 · 第一部</div>
+    <h1 class="book-title">开源之迷</h1>
+    <div class="book-subtitle">The Fascinating of Open Source</div>
+    <div class="book-author">适兕 著</div>
+    <div class="book-meta">
+      <span>人民邮电出版社</span>
+      <span>·</span>
+      <span>2022-02-10</span>
+      <span>·</span>
+      <span>ISBN 9787115578495</span>
+    </div>
+    <div class="book-description">
+      从智能手机、微信、支付宝等日常应用出发，构建一个跨越数字与虚拟的开源"平行世界"——
+      一本拥有人文情怀的开源叙事，非技术领域也能读。
+    </div>
+    <div class="book-actions">
+      <a href="https://book.douban.com/subject/35716759/" class="btn btn-primary" target="_blank" rel="noopener">豆瓣阅读 →</a>
+      <a href="#extensions" class="btn btn-ghost">书籍扩展 ↓</a>
+    </div>
+  </div>
+</div>
 
-**发现开源三部曲之一** | 适兕 著 | 人民邮电出版社 · 异步图书 · 卷积传媒 | 2022-02-10
+<section id="extensions" class="book-section">
+  <div class="section-header">
+    <h2>书籍扩展</h2>
+    <p>纸质未含的参考文献、附录与章节改进稿</p>
+  </div>
+  <div class="extensions-grid">
+    <a class="extension-card" href="/mystery/references/">
+      <div class="extension-icon">§</div>
+      <div class="extension-title">参考文献</div>
+      <div class="extension-desc">全书参考文献 · 80+ 条</div>
+      <div class="extension-tag">纸质未含</div>
+    </a>
+    <a class="extension-card" href="/mystery/appendix-a/">
+      <div class="extension-icon">A</div>
+      <div class="extension-title">附录 A</div>
+      <div class="extension-desc">2020 年开源生态数据</div>
+      <div class="extension-tag">数据快照</div>
+    </a>
+    <a class="extension-card" href="/mystery/esr-improvement/">
+      <div class="extension-icon">+</div>
+      <div class="extension-title">ESR 章节改进</div>
+      <div class="extension-desc">向世俗妥协的黑客</div>
+      <div class="extension-tag">章节重版</div>
+    </a>
+  </div>
+</section>
 
-## 内容简介
+<section class="book-section">
+  <div class="section-header">
+    <h2>创作札记</h2>
+    <p>关于这本书诞生的边角故事</p>
+  </div>
+  <div class="extensions-grid">
+    <a class="extension-card" href="/mystery/born-from-kfc/">
+      <div class="extension-icon">☕</div>
+      <div class="extension-title">诞生在 KFC</div>
+      <div class="extension-desc">嘈杂而开放的写作环境</div>
+      <div class="extension-tag">札记</div>
+    </a>
+    <a class="extension-card" href="/mystery/creative-possibility/">
+      <div class="extension-icon">∞</div>
+      <div class="extension-title">宏大性评估</div>
+      <div class="extension-desc">大模型视角的评估</div>
+      <div class="extension-tag">外部评论</div>
+    </a>
+  </div>
+</section>
 
-本书为作者阐述开源三部曲的第一部作品，旨在从大众的视野说起，介绍了什么是开源，开源不止是代码；开源的成就除了商业价值还极富社会意义；开源的参与者，程序员、学者、商人、用户等等都是开源人；开源运动是如何打破垄断不断进化、相互妥协最终取得胜利的；开源这个表面上看似乎吃力不讨好的事情如何能够取得成功的关键；开源早已撑起现代信息世界的基础并为中国提供第二次同步世界的机会。
+<section class="book-section">
+  <div class="section-header">
+    <h2>三部曲</h2>
+    <p>发现开源三部曲</p>
+  </div>
+  <div class="trilogy-grid">
+    <a class="trilogy-item trilogy-current" href="/mystery/">
+      <div class="trilogy-number">I</div>
+      <div class="trilogy-title">开源之迷</div>
+      <div class="trilogy-desc">现象与世界观</div>
+      <div class="trilogy-status">已出版</div>
+    </a>
+    <div class="trilogy-item trilogy-upcoming">
+      <div class="trilogy-number">II</div>
+      <div class="trilogy-title">开源之道</div>
+      <div class="trilogy-desc">思想与知识</div>
+      <div class="trilogy-status">撰写中</div>
+    </div>
+    <div class="trilogy-item trilogy-upcoming">
+      <div class="trilogy-number">III</div>
+      <div class="trilogy-title">开源之思</div>
+      <div class="trilogy-desc">价值与未来</div>
+      <div class="trilogy-status">撰写中</div>
+    </div>
+  </div>
+</section>
 
-全书配有大量生动有趣的故事和数据分析，本书更像是一本拥有人文情怀的计算机类书籍，能够让非技术领域的读者也可以从高屋建瓴的角度感受和拥抱开源文化。
+<section class="book-section">
+  <div class="section-header">
+    <h2>推荐语</h2>
+    <p>来自开源领袖与业界</p>
+  </div>
+  <blockquote class="book-quote">
+    <p>"无论你是谁，从事何种职业，只要你身处现代世界，开源就是你无法离开的对象，如果你不能理解开源，那你也不能理解数字化时代的思考方式。"</p>
+    <cite>—— 「开源之道」推荐短评</cite>
+  </blockquote>
+  <div class="recommend-list">
+    <span class="recommend-badge">何宝宏</span>
+    <span class="recommend-badge">曹衡康</span>
+    <span class="recommend-badge">周明辉</span>
+    <span class="recommend-badge">Keith Chen</span>
+    <span class="recommend-badge">陈绪</span>
+    <span class="recommend-badge">袁进辉</span>
+    <span class="recommend-more">等 20+ 位</span>
+  </div>
+</section>
 
-适兕刻意避开传统的开源技术编年史写法，将开源构建为一个跨越数字与虚拟的"平行世界"，化身为向导，带领读者从智能手机、微信、支付宝等日常应用的入口出发，探索开源世界的方方面面。
-
-## 基本信息
-
-| 项目 | 内容 |
-|---|---|
-| 作者 | 适兕（李建盛） |
-| 出版社 | 人民邮电出版社 · 异步图书 |
-| 出品方 | 卷积传媒 |
-| ISBN | 9787115578495 |
-| 出版年 | 2022-02-10 |
-| 页数 | 376 页 · 平装 |
-| 定价 | ¥79.9 |
-| 豆瓣评分 | 7.2（75 人评价） |
-
-📖 [在豆瓣阅读更多书评 →](https://book.douban.com/subject/35716759/)
-
-## 丛书定位
-
-《开源之迷》是「开源之道三部曲」的第一部，三部曲分别为：
-
-| 序号 | 书名 | 定位 | 状态 |
-|---|---|---|---|
-| 一 | **《开源之迷》** | 从大众视野出发，构建开源立体世界 | ✅ 已出版 |
-| 二 | 《开源之道》 | 探究开源相关的思想与知识 | 📝 撰写中 |
-| 三 | 《开源之思》 | 关于开源的价值与未来 | 📝 撰写中 |
-
-## 业界推荐
-
-来自 Linux 基金会、Apache 基金会、腾讯、华为、字节跳动、阿里巴巴、中国移动等开源领袖的推荐语，包括：
-
-- 何宝宏（中国信通院 云计算和大数据研究所所长）
-- 曹衡康（红帽全球副总裁兼大中华区总裁）
-- 周明辉（北京大学博雅特聘教授）
-- Keith Chen（Linux 基金会亚太区总监）
-- 陈绪（阿里云技术战略总监 · 阿里巴巴开源委员会副主席）
-- 袁进辉（OneFlow CEO）
-
-> 完整推荐语请查阅[豆瓣页面](https://book.douban.com/subject/35716759/)。
-
-## 购买渠道
-
-- [豆瓣](https://book.douban.com/subject/35716759/)
-- 京东 / 当当 / 天猫 搜索「开源之迷」或 ISBN `9787115578495`
+<div class="book-footer">
+  <div class="book-footer-meta">
+    <span>豆瓣评分 <strong>7.2</strong></span>
+    <span>·</span>
+    <span>376 页</span>
+    <span>·</span>
+    <span>定价 ¥79.9</span>
+  </div>
+  <div class="book-footer-links">
+    <a href="https://book.douban.com/subject/35716759/" target="_blank" rel="noopener">豆瓣</a>
+    <a href="https://www.jd.com/pinpai/10672.html" target="_blank" rel="noopener">京东</a>
+    <a href="https://search.dangdang.com/?key=%E5%BC%80%E6%BA%90%E4%B9%8B%E8%BF%B7" target="_blank" rel="noopener">当当</a>
+    <a href="https://s.taobao.com/search?q=%E5%BC%80%E6%BA%90%E4%B9%8B%E8%BF%B7" target="_blank" rel="noopener">淘宝</a>
+  </div>
+</div>

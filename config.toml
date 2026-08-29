@@ -11,4 +11,14 @@ theme = "os-works"
   serif = "Source Serif 4, Noto Serif SC, Georgia, serif"
   sans  = "Inter, Noto Sans SC, system-ui, sans-serif"
 
+# 允许 markdown 中嵌入 raw HTML（供书籍 hero 页面等富布局使用）
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    # 让裸 URL 自动转成链接（参考文献页面依赖此特性）
+    [markup.goldmark.extensions]
+      linkify = true
+      gfm = true
+
 [taxonomies]

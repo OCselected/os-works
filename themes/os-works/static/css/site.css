@@ -143,3 +143,501 @@ footer{background:var(--deep);color:var(--cream);padding:2rem clamp(1.5rem,4vw,5
 .chapter-nav a{font-size:0.8rem;letter-spacing:0.05em;color:var(--prussian);padding:0.6rem 1rem;border:1px solid var(--copper);transition:background 0.2s}
 .chapter-nav a:hover{background:var(--cream)}
 .chapter-nav a span{font-family:"Noto Serif SC",serif;color:var(--muted);display:block;font-size:0.75rem;margin-top:0.2rem}
+/* =============================================================
+   Book hero 页面（《开源之迷》专用）
+   ============================================================= */
+.book-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.book-hero {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  padding: 3rem 0 4rem;
+  border-bottom: 1px solid rgba(180, 160, 120, 0.2);
+  align-items: center;
+}
+
+.book-hero-cover img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.book-series {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--copper, #B4A078);
+  text-transform: uppercase;
+  padding: 0.4em 0.8em;
+  background: rgba(180, 160, 120, 0.12);
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.book-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--prussian, #1E3A5F);
+  margin: 0 0 0.5rem;
+}
+
+.book-subtitle {
+  font-family: "Source Serif 4", serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--muted, #666);
+  margin-bottom: 1.2rem;
+}
+
+.book-author {
+  font-size: 1.2rem;
+  color: var(--prussian, #1E3A5F);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  margin-bottom: 1.5rem;
+}
+
+.book-description {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--prussian, #1E3A5F);
+  padding-left: 1rem;
+  border-left: 2px solid var(--copper, #B4A078);
+  margin-bottom: 1.5rem;
+}
+
+.book-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7em 1.5em;
+  border-radius: 3px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--prussian, #1E3A5F);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--copper, #B4A078);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--prussian, #1E3A5F);
+  border: 1px solid rgba(30, 58, 95, 0.3);
+}
+
+.btn-ghost:hover {
+  border-color: var(--copper, #B4A078);
+  color: var(--copper, #B4A078);
+}
+
+/* 书籍扩展章节 */
+.book-section {
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.book-section:last-child {
+  border-bottom: none;
+}
+
+.section-header {
+  margin-bottom: 1.8rem;
+}
+
+.section-header h2 {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--prussian, #1E3A5F);
+  margin: 0 0 0.3rem;
+}
+
+.section-header p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  margin: 0;
+}
+
+/* 扩展卡片网格 */
+.extensions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.extension-card {
+  display: block;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.extension-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--copper, #B4A078);
+  transition: height 0.25s ease;
+}
+
+.extension-card:hover {
+  border-color: var(--copper, #B4A078);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.extension-card:hover::before {
+  height: 100%;
+}
+
+.extension-icon {
+  font-family: "Source Serif 4", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--copper, #B4A078);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+
+.extension-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--prussian, #1E3A5F);
+  margin-bottom: 0.4rem;
+}
+
+.extension-desc {
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  margin-bottom: 0.8rem;
+}
+
+.extension-tag {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  color: var(--copper, #B4A078);
+  padding: 0.2em 0.6em;
+  background: rgba(180, 160, 120, 0.1);
+  border-radius: 2px;
+}
+
+/* 三部曲 */
+.trilogy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.trilogy-item {
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.04), rgba(30, 58, 95, 0.08));
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.trilogy-item.trilogy-current {
+  background: linear-gradient(135deg, var(--prussian, #1E3A5F), #2c4f7a);
+  color: #fff;
+}
+
+.trilogy-item.trilogy-current .trilogy-number {
+  color: var(--copper, #B4A078);
+}
+
+.trilogy-item.trilogy-current .trilogy-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trilogy-item.trilogy-current .trilogy-status {
+  background: rgba(180, 160, 120, 0.3);
+  color: var(--copper, #B4A078);
+}
+
+.trilogy-item.trilogy-upcoming {
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+.trilogy-number {
+  font-family: "Source Serif 4", serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--muted, #666);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+
+.trilogy-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.trilogy-desc {
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  margin-bottom: 1rem;
+}
+
+.trilogy-status {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  padding: 0.25em 0.7em;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--muted, #666);
+  border-radius: 2px;
+}
+
+/* 引用 */
+.book-quote {
+  margin: 0 0 2rem;
+  padding: 2rem 2rem 2rem 2.5rem;
+  background: rgba(180, 160, 120, 0.06);
+  border-left: 3px solid var(--copper, #B4A078);
+  border-radius: 0 4px 4px 0;
+}
+
+.book-quote p {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--prussian, #1E3A5F);
+  margin: 0 0 0.8rem;
+}
+
+.book-quote cite {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted, #666);
+  font-style: normal;
+}
+
+/* 推荐者徽章 */
+.recommend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.recommend-badge {
+  padding: 0.5em 1em;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--prussian, #1E3A5F);
+  background: rgba(30, 58, 95, 0.06);
+  border: 1px solid rgba(30, 58, 95, 0.12);
+  border-radius: 20px;
+}
+
+.recommend-more {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted, #666);
+  font-style: italic;
+}
+
+/* 底部信息 */
+.book-footer {
+  margin-top: 4rem;
+  padding: 2rem 0 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.book-footer-meta {
+  display: flex;
+  gap: 0.6em;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+}
+
+.book-footer-meta strong {
+  color: var(--prussian, #1E3A5F);
+  font-weight: 600;
+}
+
+.book-footer-links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.book-footer-links a {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted, #666);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted, #666);
+  padding-bottom: 1px;
+}
+
+.book-footer-links a:hover {
+  color: var(--copper, #B4A078);
+  border-color: var(--copper, #B4A078);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .book-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .book-hero-cover img {
+    margin: 0 auto;
+    max-width: 240px;
+  }
+  .book-title {
+    font-size: 2.5rem;
+  }
+  .book-description {
+    padding-left: 1rem;
+  }
+  .book-actions {
+    justify-content: center;
+  }
+  .trilogy-grid {
+    grid-template-columns: 1fr;
+  }
+  .book-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* 正文样式（章节页面） */
+.book-body article,
+.book-body .article-content {
+  font-family: "Noto Serif SC", serif;
+  line-height: 1.9;
+  color: var(--prussian, #1E3A5F);
+}
+
+.book-body h2,
+.book-body h3,
+.book-body h4 {
+  font-family: "Noto Serif SC", serif;
+  color: var(--prussian, #1E3A5F);
+  margin: 2rem 0 0.8rem;
+}
+
+.book-body h2 {
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgba(180, 160, 120, 0.2);
+  padding-bottom: 0.4rem;
+}
+
+.book-body h3 {
+  font-size: 1.3rem;
+  color: var(--copper, #B4A078);
+}
+
+.book-body p {
+  margin: 0 0 1.2rem;
+}
+
+.book-body a {
+  color: var(--prussian, #1E3A5F);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.3);
+}
+
+.book-body a:hover {
+  color: var(--copper, #B4A078);
+  border-color: var(--copper, #B4A078);
+}
+
+.book-body blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: rgba(180, 160, 120, 0.06);
+  border-left: 3px solid var(--copper, #B4A078);
+  color: var(--muted, #555);
+  font-style: italic;
+}
+
+.book-body ul,
+.book-body ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1.2rem;
+}
+
+.book-body li {
+  margin-bottom: 0.4rem;
+}
+
+.book-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.book-body .back-to-book {
+  display: inline-block;
+  margin: 2rem 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--copper, #B4A078);
+  text-decoration: none;
+}
+
+.book-body .back-to-book:hover {
+  text-decoration: underline;
+}

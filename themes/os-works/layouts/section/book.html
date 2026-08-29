@@ -1,6 +1,13 @@
 {{ define "main" }}
 <section class="book-toc">
   <div class="toc-inner">
+
+    {{ if .Params.hero }}
+    {{/* hero 模式：直接渲染 _index.md 的正文（用于《开源之迷》） */}}
+    <div class="book-body">
+      {{ .Content }}
+    </div>
+    {{ else }}
     <div class="toc-header">
       <h1>{{ .Title }}</h1>
       <div class="toc-meta">
@@ -30,12 +37,14 @@
       </div>
     {{ end }}
 
-    {{ if and .Params.pdf_url }}
+    {{ if .Params.pdf_url }}
       <div class="toc-downloads">
         <a href="{{ .Params.pdf_url }}" class="download-btn">⬇ PDF 下载</a>
         {{ if .Params.epub_url }}<a href="{{ .Params.epub_url }}" class="download-btn">⬇ EPUB 下载</a>{{ end }}
       </div>
     {{ end }}
+    {{ end }}
+
   </div>
 </section>
 {{ end }}
