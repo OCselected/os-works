@@ -29,14 +29,16 @@ jobs:
         with:
           hugo-version: '0.164.0'
 
+      # Generate TOC from SUMMARY.md (Python 依赖)
+      - name: Generate TOC
+        run: python3 scripts/gen_toc.py
+
       # Build Hugo site → public/
       - name: Hugo build
         run: |
           mkdir -p public
           hugo --minify -d public
-      # Generate TOC from SUMMARY.md (Python 依赖)
-      - name: Generate TOC
-        run: python3 scripts/gen_toc.py
+
       # Install WeasyPrint + pandoc + fonts
       #- name: Install build tools
       #  run: |
