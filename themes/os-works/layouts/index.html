@@ -15,7 +15,7 @@
   </div>
 </header>
 
-{{/* 按 work_type 排序（默认 99 兜底），保证三部曲→书单→经济→之思→之道 的语义顺序 */}}
+{{/* 按 work_type 排序（默认 99 兜底） */}}
 {{ $works := slice }}
 {{ range .Site.Sections }}
   {{ $t := .Type }}
@@ -30,7 +30,20 @@
   {{ range $works }}
     {{ $s := .section }}
     {{ $t := .type }}
-    <a class="work-card card-{{ $t }}" href="{{ $s.RelPermalink }}">
+    {{/* 外链类（book-list / external）直接跳到外部 URL；本地作品走 RelPermalink */}}
+    {{ $link := $s.RelPermalink }}
+    {{ $target := "" }}
+    {{ $rel := "" }}
+    {{ if eq $t "external" }}
+      {{ $link = $s.Params.href }}
+      {{ $target = "_blank" }}
+      {{ $rel = "noopener noreferrer" }}
+    {{ else if eq $t "book-list" }}
+      {{ $link = $s.Params.href }}
+      {{ $target = "_blank" }}
+      {{ $rel = "noopener noreferrer" }}
+    {{ end }}
+    <a class="work-card card-{{ $t }}" href="{{ $link }}"{{ if $target }} target="{{ $target }}"{{ end }}{{ if $rel }} rel="{{ $rel }}"{{ end }} title="{{ if or (eq $t "external") (eq $t "book-list") }}外链 ↗{{ end }}">
       <div class="card-cover">
         {{ if $s.Params.cover }}
           <img src="{{ $s.Params.cover | relURL }}" alt="{{ $s.Title }}">
@@ -45,13 +58,13 @@
             {{ $badgeClass = "badge-online" }}
           {{ end }}
         {{ else if eq $t "book-list" }}
-          {{ $badge = "书单" }}
-          {{ $badgeClass = "badge-booklist" }}
+          {{ $badge = "书单 ↗" }}
+          {{ $badgeClass = "badge-external" }}
         {{ else if eq $t "external" }}
           {{ if $s.Params.badge }}
-            {{ $badge = $s.Params.badge }}
+            {{ $badge = printf "%s ↗" $s.Params.badge }}
           {{ else }}
-            {{ $badge = "外链" }}
+            {{ $badge = "外链 ↗" }}
           {{ end }}
           {{ $badgeClass = "badge-external" }}
         {{ else if eq $t "thinking" }}
@@ -61,9 +74,6 @@
         {{ end }}
         {{ if $badge }}
           <span class="card-badge {{ $badgeClass }}">{{ $badge }}</span>
-        {{ end }}
-        {{ if eq $t "external" }}
-          <span class="card-external-icon" title="外部链接">↗</span>
         {{ end }}
       </div>
       <div class="card-meta">
