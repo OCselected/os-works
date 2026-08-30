@@ -9,7 +9,7 @@ description: "适兕在过去十几年的阅读中筛选出来的开源经典文
 external: true
 href: "https://osbook.opensourceway.blog/books/"
 badge: "书单"
-work_type: 1
+work_type: 4
 ---
 
 <div class="book-hero">
