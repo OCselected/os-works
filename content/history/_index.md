@@ -8,6 +8,7 @@ author: "适兕"
 description: "开源运动的法律、文化、思想、权力四维历史叙事"
 pdf_url: "/dist/history.pdf"
 epub_url: "/dist/history.epub"
+work_type: 6
 cascade:
   type: chapter
 ---

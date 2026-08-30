@@ -15,36 +15,71 @@
   </div>
 </header>
 
+{{/* 按 work_type 排序（默认 99 兜底），保证三部曲→书单→经济→之思→之道 的语义顺序 */}}
+{{ $works := slice }}
+{{ range .Site.Sections }}
+  {{ $t := .Type }}
+  {{ if or (eq $t "book") (eq $t "book-list") (eq $t "thinking") (eq $t "external") }}
+    {{ $wt := .Params.work_type | default 99 }}
+    {{ $works = $works | append (dict "section" . "type" $t "wt" $wt) }}
+  {{ end }}
+{{ end }}
+{{ $works = sort $works "wt" }}
+
 <section class="works-grid">
-  {{ $sections := .Site.Sections }}
-  {{ range sort $sections "Params.date" }}
-    {{ if eq .Type "book" }}
-      <a class="work-card" href="{{ .RelPermalink }}">
-        <div class="card-cover">
-          {{ if .Params.cover }}
-            <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }}">
-          {{ end }}
-          {{ if eq .Params.book_type "published" }}
-            <span class="card-badge">已出版</span>
+  {{ range $works }}
+    {{ $s := .section }}
+    {{ $t := .type }}
+    <a class="work-card card-{{ $t }}" href="{{ $s.RelPermalink }}">
+      <div class="card-cover">
+        {{ if $s.Params.cover }}
+          <img src="{{ $s.Params.cover | relURL }}" alt="{{ $s.Title }}">
+        {{ end }}
+        {{ $badge := "" }}
+        {{ $badgeClass := "" }}
+        {{ if eq $t "book" }}
+          {{ if eq $s.Params.book_type "published" }}
+            {{ $badge = "已出版" }}
           {{ else }}
-            <span class="card-badge badge-online">在线读物</span>
+            {{ $badge = "在线读物" }}
+            {{ $badgeClass = "badge-online" }}
           {{ end }}
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">{{ .Title | truncate 30 }}</span>
-          <span class="card-sub">{{ if .Params.author }}{{ .Params.author }}{{ else }}适兕{{ end }}</span>
-          {{ if .Params.publisher }}<span class="card-pub">{{ .Params.publisher | truncate 20 }}</span>{{ end }}
-          {{ if .Params.rating }}<span class="card-rating">★ {{ .Params.rating }}</span>{{ end }}
-        </div>
-      </a>
-    {{ end }}
+        {{ else if eq $t "book-list" }}
+          {{ $badge = "书单" }}
+          {{ $badgeClass = "badge-booklist" }}
+        {{ else if eq $t "external" }}
+          {{ if $s.Params.badge }}
+            {{ $badge = $s.Params.badge }}
+          {{ else }}
+            {{ $badge = "外链" }}
+          {{ end }}
+          {{ $badgeClass = "badge-external" }}
+        {{ else if eq $t "thinking" }}
+          {{ $count := len $s.Pages }}
+          {{ $badge = printf "%d 篇" $count }}
+          {{ $badgeClass = "badge-thinking" }}
+        {{ end }}
+        {{ if $badge }}
+          <span class="card-badge {{ $badgeClass }}">{{ $badge }}</span>
+        {{ end }}
+        {{ if eq $t "external" }}
+          <span class="card-external-icon" title="外部链接">↗</span>
+        {{ end }}
+      </div>
+      <div class="card-meta">
+        <span class="card-tag">{{ $s.Title | truncate 32 }}</span>
+        <span class="card-sub">{{ if $s.Params.author }}{{ $s.Params.author }}{{ else }}适兕{{ end }}</span>
+        {{ if $s.Params.publisher }}<span class="card-pub">{{ $s.Params.publisher | truncate 20 }}</span>{{ end }}
+        {{ if $s.Params.rating }}<span class="card-rating">★ {{ $s.Params.rating }}</span>{{ end }}
+      </div>
+    </a>
   {{ end }}
 </section>
 
 <section class="home-about">
   <div class="about-inner">
     <h2>「开源之道」· 作品</h2>
-    <p>适兕以翻译、整理、原创三种方式，致力于将开源思想的核心文献引入中文语境。从《开源之迷》三部曲开篇，到本克莱《网络的财富》的翻译，再到《开源之史》的系统梳理，作品横跨制度经济学、法律演化、文化批判与政治经济学四条分析脉络。</p>
+    <p>适兕以翻译、整理、原创三种方式，致力于将开源思想的核心文献引入中文语境。从《开源之迷》三部曲开篇，到本克莱《网络的财富》的翻译，再到《开源之史》的系统梳理，作品横跨制度经济学、法律演化、文化批判与政治经济学四条分析脉络。「开源之书」的十几年筛选书单、「开源的经济学」的制度分析讲义、《开源之道》的十年博客写作、《开源之思》的 21 篇思想札记——四种形态并行，构成「开源之道」的完整作品图谱。</p>
     <p class="about-quote">"开源之为思想的力量。"</p>
     <cite class="about-cite">——「开源之道」· 适兕</cite>
   </div>

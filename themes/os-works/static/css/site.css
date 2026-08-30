@@ -800,3 +800,136 @@ a.btn-ghost:hover {
   color: var(--copper);
   border-color: var(--copper);
 }
+
+/* ============= 多 type 徽章样式 ============= */
+.card-badge.badge-booklist { background: #6b4c2e; color: #fff; }
+.card-badge.badge-thinking { background: #2a3a5c; color: #e8d9a0; }
+.card-badge.badge-external { background: transparent; color: var(--copper); border: 1px solid var(--copper); }
+
+/* 外链卡片右上角箭头 */
+.card-external-icon {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 0.9rem;
+  color: var(--copper);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ============= 卡片 type 视觉区分 ============= */
+.work-card.card-book-list { border-color: #6b4c2e; }
+.work-card.card-thinking { border-color: #2a3a5c; }
+.work-card.card-external { border-style: dashed; }
+
+/* ============= thinking 列表页 ============= */
+.thinking-list-header {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--prussian);
+  margin: 3rem 0 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--copper);
+}
+.thinking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+.thinking-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--cream);
+  border: 1px solid var(--copper);
+  border-left: 3px solid var(--prussian);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.thinking-card:hover {
+  transform: translateX(3px);
+  box-shadow: 0 6px 20px rgba(27, 59, 107, 0.12);
+  background: #fff;
+}
+.thinking-card-date {
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 0.85rem;
+  color: var(--copper);
+  letter-spacing: 0.05em;
+  padding-top: 0.3rem;
+}
+.thinking-card-body h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--prussian);
+  margin: 0 0 0.4rem 0;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.thinking-card-body p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============= thinking 单篇 ============= */
+.thinking-article {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.thinking-article h1 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--prussian);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.thinking-article .meta {
+  color: var(--copper);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--copper);
+}
+.thinking-article .content {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #333;
+}
+.thinking-article .content h2 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--prussian);
+  margin: 2rem 0 1rem 0;
+}
+.thinking-article .content h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--prussian);
+  margin: 1.5rem 0 0.8rem 0;
+}
+.thinking-article .content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--copper);
+}
+.thinking-article .content blockquote {
+  border-left: 3px solid var(--copper);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  background: var(--cream);
+  color: var(--prussian);
+  font-style: italic;
+}

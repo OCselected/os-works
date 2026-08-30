@@ -14,6 +14,7 @@ rating: 7.2
 reviews: "75"
 hero: true
 description: "发现开源三部曲之一 —— 从大众视野出发，构建开源的立体世界"
+work_type: 3
 cascade:
   type: book
 ---
