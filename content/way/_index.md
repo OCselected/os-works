@@ -9,7 +9,7 @@ description: "适兕的开源思想长文与日常观察——开源之道博客
 external: true
 href: "https://www.opensourceway.blog/"
 badge: "博客"
-work_type: 6
+work_type: 4
 ---
 
 <div class="book-hero">

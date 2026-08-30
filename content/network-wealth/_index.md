@@ -8,7 +8,7 @@ author: "Yochai Benkler（约查伊·本克莱）著 / 适兕 译"
 description: "网络对等生产如何改变信息经济的政治经济学"
 pdf_url: "/dist/network-wealth.pdf"
 epub_url: "/dist/network-wealth.epub"
-work_type: 3
+work_type: 7
 cascade:
   type: chapter
 ---

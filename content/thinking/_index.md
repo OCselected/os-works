@@ -6,7 +6,7 @@ type: thinking
 cover: "thinking-cover.jpeg"
 author: "适兕"
 description: "适兕的思想札记——制度经济学、文化批判与政治经济学的碎片化观察，21 篇"
-work_type: 7
+work_type: 5
 ---
 
 <div class="book-hero">

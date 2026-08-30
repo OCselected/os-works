@@ -9,7 +9,7 @@ description: "开源的经济分析——制度经济学、交易成本、知识
 external: true
 href: "https://os-economic.opensourceway.blog/book/"
 badge: "讲义"
-work_type: 5
+work_type: 2
 ---
 
 <div class="book-hero">
