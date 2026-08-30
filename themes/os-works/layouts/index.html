@@ -15,75 +15,99 @@
   </div>
 </header>
 
-{{/* 按 work_type 排序（默认 99 兜底） */}}
+{{/* 收集所有作品 section */}}
 {{ $works := slice }}
 {{ range .Site.Sections }}
   {{ $t := .Type }}
   {{ if or (eq $t "book") (eq $t "book-list") (eq $t "thinking") (eq $t "external") }}
-    {{ $wt := .Params.work_type | default 99 }}
-    {{ $works = $works | append (dict "section" . "type" $t "wt" $wt) }}
+    {{ $works = $works | append . }}
   {{ end }}
 {{ end }}
-{{ $works = sort $works "wt" }}
 
-<section class="works-grid">
-  {{ range $works }}
-    {{ $s := .section }}
-    {{ $t := .type }}
-    {{/* 外链类（book-list / external）直接跳到外部 URL；本地作品走 RelPermalink */}}
-    {{ $link := $s.RelPermalink }}
-    {{ $target := "" }}
-    {{ $rel := "" }}
-    {{ if eq $t "external" }}
-      {{ $link = $s.Params.href }}
-      {{ $target = "_blank" }}
-      {{ $rel = "noopener noreferrer" }}
-    {{ else if eq $t "book-list" }}
-      {{ $link = $s.Params.href }}
-      {{ $target = "_blank" }}
-      {{ $rel = "noopener noreferrer" }}
+<section class="works-grid-wrapper">
+  {{/* 排序工具栏 */}}
+  <div class="works-toolbar">
+    <span class="works-toolbar-label">排序</span>
+    <div class="works-toolbar-btns" id="works-sort-btns">
+      <button type="button" data-sort="random" class="sort-btn active" title="随机（每次刷新重排）">🎲 随机</button>
+      <button type="button" data-sort="name" class="sort-btn" title="按名称">名称</button>
+      <button type="button" data-sort="date" class="sort-btn" title="按发布日期">日期</button>
+      <button type="button" data-sort="type" class="sort-btn" title="按类型分组">类型</button>
+    </div>
+  </div>
+
+  {{/* 作品卡片网格 — 后端按 work_type 静态排序，前端 JS 覆盖为动态排序 */}}
+  <div class="works-grid" id="works-grid">
+    {{ range $s := $works }}
+      {{ $t := $s.Type }}
+      {{/* 外链类（book-list / external）跳外部；本地作品走 RelPermalink */}}
+      {{ $link := $s.RelPermalink }}
+      {{ $target := "" }}
+      {{ $rel := "" }}
+      {{ if eq $t "external" }}
+        {{ $link = $s.Params.href }}
+        {{ $target = "_blank" }}
+        {{ $rel = "noopener noreferrer" }}
+      {{ else if eq $t "book-list" }}
+        {{ $link = $s.Params.href }}
+        {{ $target = "_blank" }}
+        {{ $rel = "noopener noreferrer" }}
+      {{ end }}
+      {{/* data-sort-* 元数据，供前端 JS 排序 */}}
+      {{ $nameLower := lower $s.Title }}
+      {{ $dateStr := $s.Date.Format "2006-01-02" }}
+      {{ $typeOrder := dict "book" 1 "book-list" 2 "external" 3 "thinking" 4 }}
+      {{ $typeOrderVal := index $typeOrder $t | default 99 }}
+      <a class="work-card card-{{ $t }}"
+         href="{{ $link }}"
+         {{ if $target }}target="{{ $target }}"{{ end }}
+         {{ if $rel }}rel="{{ $rel }}"{{ end }}
+         {{ if or (eq $t "external") (eq $t "book-list") }}title="外链 ↗"{{ end }}
+         data-sort-name="{{ $nameLower }}"
+         data-sort-date="{{ $dateStr }}"
+         data-sort-type="{{ $typeOrderVal }}"
+         data-type="{{ $t }}">
+        <div class="card-cover">
+          {{ if $s.Params.cover }}
+            <img src="{{ $s.Params.cover | relURL }}" alt="{{ $s.Title }}">
+          {{ end }}
+          {{ $badge := "" }}
+          {{ $badgeClass := "" }}
+          {{ if eq $t "book" }}
+            {{ if eq $s.Params.book_type "published" }}
+              {{ $badge = "已出版" }}
+            {{ else }}
+              {{ $badge = "在线读物" }}
+              {{ $badgeClass = "badge-online" }}
+            {{ end }}
+          {{ else if eq $t "book-list" }}
+            {{ $badge = "书单 ↗" }}
+            {{ $badgeClass = "badge-external" }}
+          {{ else if eq $t "external" }}
+            {{ if $s.Params.badge }}
+              {{ $badge = printf "%s ↗" $s.Params.badge }}
+            {{ else }}
+              {{ $badge = "外链 ↗" }}
+            {{ end }}
+            {{ $badgeClass = "badge-external" }}
+          {{ else if eq $t "thinking" }}
+            {{ $count := len $s.Pages }}
+            {{ $badge = printf "%d 篇" $count }}
+            {{ $badgeClass = "badge-thinking" }}
+          {{ end }}
+          {{ if $badge }}
+            <span class="card-badge {{ $badgeClass }}">{{ $badge }}</span>
+          {{ end }}
+        </div>
+        <div class="card-meta">
+          <span class="card-tag">{{ $s.Title | truncate 32 }}</span>
+          <span class="card-sub">{{ if $s.Params.author }}{{ $s.Params.author }}{{ else }}适兕{{ end }}</span>
+          {{ if $s.Params.publisher }}<span class="card-pub">{{ $s.Params.publisher | truncate 20 }}</span>{{ end }}
+          {{ if $s.Params.rating }}<span class="card-rating">★ {{ $s.Params.rating }}</span>{{ end }}
+        </div>
+      </a>
     {{ end }}
-    <a class="work-card card-{{ $t }}" href="{{ $link }}"{{ if $target }} target="{{ $target }}"{{ end }}{{ if $rel }} rel="{{ $rel }}"{{ end }} title="{{ if or (eq $t "external") (eq $t "book-list") }}外链 ↗{{ end }}">
-      <div class="card-cover">
-        {{ if $s.Params.cover }}
-          <img src="{{ $s.Params.cover | relURL }}" alt="{{ $s.Title }}">
-        {{ end }}
-        {{ $badge := "" }}
-        {{ $badgeClass := "" }}
-        {{ if eq $t "book" }}
-          {{ if eq $s.Params.book_type "published" }}
-            {{ $badge = "已出版" }}
-          {{ else }}
-            {{ $badge = "在线读物" }}
-            {{ $badgeClass = "badge-online" }}
-          {{ end }}
-        {{ else if eq $t "book-list" }}
-          {{ $badge = "书单 ↗" }}
-          {{ $badgeClass = "badge-external" }}
-        {{ else if eq $t "external" }}
-          {{ if $s.Params.badge }}
-            {{ $badge = printf "%s ↗" $s.Params.badge }}
-          {{ else }}
-            {{ $badge = "外链 ↗" }}
-          {{ end }}
-          {{ $badgeClass = "badge-external" }}
-        {{ else if eq $t "thinking" }}
-          {{ $count := len $s.Pages }}
-          {{ $badge = printf "%d 篇" $count }}
-          {{ $badgeClass = "badge-thinking" }}
-        {{ end }}
-        {{ if $badge }}
-          <span class="card-badge {{ $badgeClass }}">{{ $badge }}</span>
-        {{ end }}
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">{{ $s.Title | truncate 32 }}</span>
-        <span class="card-sub">{{ if $s.Params.author }}{{ $s.Params.author }}{{ else }}适兕{{ end }}</span>
-        {{ if $s.Params.publisher }}<span class="card-pub">{{ $s.Params.publisher | truncate 20 }}</span>{{ end }}
-        {{ if $s.Params.rating }}<span class="card-rating">★ {{ $s.Params.rating }}</span>{{ end }}
-      </div>
-    </a>
-  {{ end }}
+  </div>
 </section>
 
 <section class="home-about">
@@ -94,4 +118,76 @@
     <cite class="about-cite">——「开源之道」· 适兕</cite>
   </div>
 </section>
+
+<script>
+// 作品排序：随机（默认）/ 名称 / 日期 / 类型
+(function () {
+  var grid = document.getElementById('works-grid');
+  var btns = document.querySelectorAll('.sort-btn');
+  if (!grid || !btns.length) return;
+
+  var STORAGE_KEY = 'osworks-sort-mode';
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function applySort(mode) {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.work-card'));
+    if (!cards.length) return;
+
+    if (mode === 'name') {
+      cards.sort(function (a, b) {
+        return (a.dataset.sortName || '').localeCompare(b.dataset.sortName || '', 'zh');
+      });
+    } else if (mode === 'date') {
+      cards.sort(function (a, b) {
+        return (b.dataset.sortDate || '').localeCompare(a.dataset.sortDate || '');
+      });
+    } else if (mode === 'type') {
+      cards.sort(function (a, b) {
+        return (parseInt(a.dataset.sortType, 10) || 99) - (parseInt(b.dataset.sortType, 10) || 99);
+      });
+    } else {
+      // random（默认）
+      shuffle(cards);
+    }
+
+    cards.forEach(function (card) {
+      card.style.transition = 'opacity 0.15s, transform 0.15s';
+      grid.appendChild(card);
+    });
+  }
+
+  function setActiveBtn(mode) {
+    btns.forEach(function (b) {
+      b.classList.toggle('active', b.dataset.sort === mode);
+    });
+  }
+
+  // 读取上次选择；无记录则默认 random
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  var initialMode = saved || 'random';
+  if (!Array.prototype.some.call(btns, function (b) { return b.dataset.sort === initialMode; })) {
+    initialMode = 'random';
+  }
+  applySort(initialMode);
+  setActiveBtn(initialMode);
+
+  // 按钮切换
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var mode = btn.dataset.sort;
+      applySort(mode);
+      setActiveBtn(mode);
+      try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+    });
+  });
+})();
+</script>
 {{ end }}

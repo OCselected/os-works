@@ -933,3 +933,96 @@ a.btn-ghost:hover {
   color: var(--prussian);
   font-style: italic;
 }
+
+/* ============ 作品排序工具栏（index.html） ============ */
+/* 借鉴 opensource.google/projects 的视觉语言：极简 segmented control，古铜+深蓝 */
+.works-grid-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.works-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(180, 160, 120, 0.18);
+}
+
+.works-toolbar-label {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(180, 160, 120, 0.6);
+  font-weight: 500;
+}
+
+.works-toolbar-btns {
+  display: inline-flex;
+  gap: 0;
+  background: rgba(27, 59, 107, 0.04);
+  border: 1px solid rgba(27, 59, 107, 0.14);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.sort-btn {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(27, 59, 107, 0.7);
+  background: transparent;
+  border: 0;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.sort-btn:hover {
+  color: #1b3b6b;
+  background: rgba(27, 59, 107, 0.06);
+}
+
+.sort-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1b3b6b 0%, #2a4d80 100%);
+  box-shadow: 0 1px 4px rgba(27, 59, 107, 0.25);
+}
+
+.sort-btn.active:hover {
+  background: linear-gradient(135deg, #1b3b6b 0%, #2a4d80 100%);
+  color: #ffffff;
+}
+
+/* 暗色背景下工具栏微调 */
+body.dark .works-toolbar {
+  border-bottom-color: rgba(180, 160, 120, 0.28);
+}
+
+body.dark .works-toolbar-btns {
+  background: rgba(180, 160, 120, 0.06);
+  border-color: rgba(180, 160, 120, 0.2);
+}
+
+body.dark .sort-btn {
+  color: rgba(180, 160, 120, 0.7);
+}
+
+body.dark .sort-btn:hover {
+  color: #b4a078;
+  background: rgba(180, 160, 120, 0.08);
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .works-grid-wrapper { padding: 0 20px; }
+  .works-toolbar { flex-wrap: wrap; }
+  .works-toolbar-label { font-size: 10px; }
+  .sort-btn { font-size: 11px; padding: 6px 10px; }
+}
