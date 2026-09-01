@@ -1026,3 +1026,124 @@ body.dark .sort-btn:hover {
   .works-toolbar-label { font-size: 10px; }
   .sort-btn { font-size: 11px; padding: 6px 10px; }
 }
+
+/* ═══ 在线阅读按钮（book.html 右上角，主按钮）═══ */
+.book-download-corner .download-btn-read{
+  background: var(--copper, #B4A078);
+  color: #fff;
+  border: 1.5px solid var(--copper, #B4A078);
+}
+.book-download-corner .download-btn-read:hover{
+  background: var(--prussian, #1E3A5F);
+  border-color: var(--prussian, #1E3A5F);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ═══ 阅读器：左右分栏（single.html 章节页增强）═══ */
+.reader-layout{
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 120px);
+  position: relative;
+}
+
+/* 左栏：固定目录 */
+.reader-toc{
+  width: 300px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(139,115,85,0.18);
+  background: var(--cream, #FAF6EF);
+  overflow-y: auto;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  padding: 1.5rem 1.2rem 2rem;
+  box-sizing: border-box;
+}
+.reader-toc-header{
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(139,115,85,0.25);
+}
+.reader-toc-home{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "Noto Serif SC", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--prussian);
+  text-decoration: none;
+}
+.reader-toc-home:hover{ color: var(--accent); }
+.reader-toc-list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+.reader-toc-list .toc-part{
+  font-size: 0.85rem;
+  margin: 1.2rem 0 0.5rem;
+}
+.reader-toc-list .toc-chapter{ margin: 0.5rem 0 0.2rem; }
+.reader-toc-list .toc-chapter-title{
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.reader-toc-list .toc-chapter-title.active{
+  color: var(--accent);
+  font-weight: 700;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.6rem;
+}
+
+/* 右栏：正文 */
+.reader-main{
+  flex: 1;
+  min-width: 0;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3.5rem clamp(1.5rem, 4vw, 4rem) 3rem;
+}
+.reader-main .chapter-nav{ max-width: none; }
+
+/* 移动端目录开关（汉堡按钮） */
+.reader-toc-toggle{
+  display: none;
+  position: fixed;
+  top: 74px;
+  left: 16px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--copper, #B4A078);
+  background: rgba(255,255,255,0.95);
+  color: var(--prussian, #1E3A5F);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.reader-toc-toggle:hover{ background: var(--cream); }
+
+/* 响应式：< 900px 左栏折叠为抽屉 */
+@media (max-width: 900px){
+  .reader-toc{
+    position: fixed;
+    top: 64px;
+    left: 0;
+    height: calc(100vh - 64px);
+    width: 300px;
+    max-width: 85vw;
+    z-index: 190;
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+  }
+  .reader-toc.open{ transform: translateX(0); }
+  .reader-toc-toggle{ display: flex; }
+  .reader-main{ padding-top: 3rem; }
+}

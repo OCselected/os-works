@@ -1,4 +1,9 @@
 {{ define "main" }}
+{{ $slug := .Section }}
+{{ $isBook := or (eq $slug "history") (eq $slug "network-wealth") (eq $slug "mystery") }}
+
+{{ if not $isBook }}
+{{/* ── 非书类 section（thinking 等）：原始章节页布局 ── */}}
 <article class="chapter">
   <header class="chapter-header">
     <h1>{{ .Title }}</h1>
@@ -18,4 +23,94 @@
     <a href="/">返回首页 → <span>「开源之道」· 作品</span></a>
   </nav>
 </article>
+{{ else }}
+{{/* ── 书类 section：阅读器布局（左目录 + 右正文） ── */}}
+<div class="reader-layout">
+  {{ $toc := readFile (printf "data/%s/toc.html" $slug) }}
+  {{ $currentPath := strings.TrimSuffix "/" .RelPermalink }}
+  <aside class="reader-toc" id="readerToc">
+    <div class="reader-toc-header">
+      <a href="/{{ $slug }}/" class="reader-toc-home">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        {{ if eq $slug "network-wealth" }}网络的财富{{ else if eq $slug "mystery" }}开源之迷{{ else }}开源之史{{ end }}
+      </a>
+    </div>
+    {{ if $toc }}
+    <nav class="reader-toc-list">{{ $toc | safeHTML }}</nav>
+    {{ end }}
+  </aside>
+
+  <article class="chapter reader-main">
+    <header class="chapter-header">
+      <h1>{{ .Title }}</h1>
+      <div class="chapter-meta">
+        {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
+        {{ if .Params.date }}<span>{{ .Params.date.Format "2006年01月02日" }}</span>{{ end }}
+      </div>
+    </header>
+    <div class="chapter-body">{{ .Content }}</div>
+
+    {{/* 前后导航：按 toc.html 阅读顺序 */}}
+    <nav class="chapter-nav">
+      {{ $prevTitle := "" }}{{ $prevHref := "" }}
+      {{ $nextTitle := "" }}{{ $nextHref := "" }}
+      {{ if $toc }}
+        {{ $links := findRE "<a class=\"toc-chapter-title\" href=\"[^\"]+\">[^<]+" $toc }}
+        {{ $found := false }}
+        {{ range $links }}
+          {{ $href := strings.TrimSuffix "/" (strings.TrimPrefix "<a class=\"toc-chapter-title\" href=\"" (index (split . "\">") 0)) }}
+          {{ $title := index (split . "\">") 1 }}
+          {{ if eq $href $currentPath }}
+            {{ $found = true }}
+          {{ else if $found }}
+            {{ if eq $nextHref "" }}{{ $nextHref = $href }}{{ $nextTitle = $title }}{{ end }}
+          {{ else }}
+            {{ $prevHref = $href }}{{ $prevTitle = $title }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if $prevHref }}
+      <a href="{{ $prevHref }}/" class="chapter-prev">← {{ $prevTitle }}</a>
+      {{ else }}
+      <a href="/{{ $slug }}/" class="chapter-prev">← 返回目录</a>
+      {{ end }}
+      {{ if $nextHref }}
+      <a href="{{ $nextHref }}/" class="chapter-next">{{ $nextTitle }} →</a>
+      {{ else }}
+      <a href="/" class="chapter-next">返回首页 →</a>
+      {{ end }}
+    </nav>
+  </article>
+</div>
+
+<button class="reader-toc-toggle" id="readerTocToggle" aria-label="目录">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<script>
+(function() {
+  var path = window.location.pathname.replace(/\/$/, '');
+  document.querySelectorAll('.reader-toc-list a').forEach(function(a) {
+    var href = a.getAttribute('href').replace(/\/$/, '');
+    if (href === path) a.classList.add('active');
+  });
+  var toggle = document.getElementById('readerTocToggle');
+  var toc = document.getElementById('readerToc');
+  if (toggle && toc) {
+    toggle.addEventListener('click', function() { toc.classList.toggle('open'); });
+    toc.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') toc.classList.remove('open');
+    });
+  }
+  var key = 'reader-scroll-' + path;
+  var saved = localStorage.getItem(key);
+  if (saved) window.scrollTo(0, parseInt(saved, 10));
+  var t;
+  window.addEventListener('scroll', function() {
+    clearTimeout(t);
+    t = setTimeout(function() { localStorage.setItem(key, String(window.scrollY)); }, 300);
+  }, { passive: true });
+})();
+</script>
+{{ end }}
 {{ end }}
