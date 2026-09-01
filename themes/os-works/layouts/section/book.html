@@ -1,89 +1,138 @@
 {{ define "main" }}
-{{/* 右上角下载按钮（fixed 定位，仅当有 pdf_url 时显示） */}}
-{{ if .Params.pdf_url }}
-<div class="book-download-corner">
-  {{/* 在线阅读主按钮 — 指向本书第一篇文章（toc.html 第一个非 readme 链接；无 toc 时用 RegularPages） */}}
-  {{ $tocContent := readFile (printf "data/%s/toc.html" .Section) }}
-  {{ $firstHref := "" }}
-  {{ if $tocContent }}
-    {{ $links := findRE "href=\"/[^\"]+/" $tocContent }}
-    {{ range $links }}
-      {{ $h := strings.TrimSuffix "/" (strings.TrimPrefix "href=\"" .) }}
-      {{ if and (eq $firstHref "") (not (strings.Contains $h "readme")) }}
-        {{ $firstHref = $h }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-  {{ if not $firstHref }}
-    {{ with index .RegularPages 0 }}{{ $firstHref = .RelPermalink }}{{ end }}
-  {{ end }}
-  {{ if $firstHref }}
-  <a href="{{ $firstHref }}" class="download-btn download-btn-read" title="在线阅读本书">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-    在线阅读
-  </a>
-  {{ end }}
-  <a href="{{ .Params.pdf_url }}" class="download-btn download-btn-solid" title="下载 PDF 版">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    PDF
-  </a>
-  {{ if .Params.epub_url }}
-  <a href="{{ .Params.epub_url }}" class="download-btn download-btn-outline" title="下载 EPUB 版">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    EPUB
-  </a>
-  {{ end }}
-</div>
-{{ end }}
+{{/* ═══════════════ 沉浸式 Hero ═══════════════ */}}
+{{ $slug := .Section }}
+{{ $toc := readFile (printf "data/%s/toc.html" $slug) }}
 
+{{/* 在线阅读首章链接 */}}
+{{ $firstHref := "" }}
+{{ if $toc }}
+  {{ $links := findRE "href=\"/[^\"]+/" $toc }}
+  {{ range $links }}
+    {{ $h := strings.TrimSuffix "/" (strings.TrimPrefix "href=\"" .) }}
+    {{ if and (eq $firstHref "") (not (strings.Contains $h "readme")) }}{{ $firstHref = $h }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ if not $firstHref }}{{ with index .RegularPages 0 }}{{ $firstHref = .RelPermalink }}{{ end }}{{ end }}
+
+{{ if .Params.hero }}
+{{/* ── hero 模式：直接渲染正文（《开源之迷》） ── */}}
 <section class="book-toc">
   <div class="toc-inner">
+    <div class="book-body">{{ .Content }}</div>
+  </div>
+</section>
+{{ else }}
 
-    {{ if .Params.hero }}
-    {{/* hero 模式：直接渲染 _index.md 的正文（用于《开源之迷》） */}}
-    <div class="book-body">
-      {{ .Content }}
-    </div>
-    {{ else }}
-    <div class="toc-header">
-      <div class="toc-header-inner">
+<section class="book-hero-section">
+  <div class="book-hero-grid-bg"></div>
+  <div class="book-hero-inner">
+    {{/* 封面 */}}
+    <div class="book-hero-cover-wrap">
+      <div class="book-hero-cover">
         {{ if .Params.cover }}
-        <div class="toc-cover">
-          <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }} 封面">
-        </div>
+        <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }} 封面">
         {{ end }}
-        <div class="toc-header-text">
-          <h1>{{ .Title }}</h1>
-          <div class="toc-meta">
-            {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
-            {{ if .Params.author }}<span>·</span>{{ end }}
-            {{ if .Params.publisher }}<span>{{ .Params.publisher }}</span>{{ end }}
-          </div>
-          {{ if .Params.description }}
-            <div class="toc-desc">{{ .Params.description }}</div>
-          {{ end }}
-          {{ if .Content }}
-            <div class="toc-intro">{{ .Content }}</div>
-          {{ end }}
-        </div>
+      </div>
+      <div class="book-hero-glow"></div>
+    </div>
+
+    {{/* 文本区 */}}
+    <div class="book-hero-text">
+      <div class="book-hero-kicker">
+        <span class="book-hero-line"></span>
+        {{ if eq $slug "network-wealth" }}THE WEALTH OF NETWORKS{{ else }}HISTORY · MOVEMENT · IDEAS{{ end }}
+      </div>
+      <h1 class="book-hero-title">{{ .Title }}</h1>
+      <div class="book-hero-meta">
+        {{ if .Params.author }}<span>{{ .Params.author }}</span>{{ end }}
+        {{ if .Params.publisher }}<span class="book-hero-dot">·</span><span>{{ .Params.publisher }}</span>{{ end }}
+      </div>
+      {{ if .Params.description }}
+      <p class="book-hero-desc">{{ .Params.description }}</p>
+      {{ end }}
+      {{ if .Content }}
+      <div class="book-hero-intro">{{ .Content }}</div>
+      {{ end }}
+
+      {{/* 特色标签 */}}
+      {{ if .Params.tags }}
+      <div class="book-hero-tags">
+        {{ range .Params.tags }}
+        <span class="book-chip">{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{/* 三按钮：在线阅读（主）· PDF · EPUB */}}
+      <div class="book-hero-actions">
+        {{ if $firstHref }}
+        <a href="{{ $firstHref }}" class="hero-btn hero-btn-primary" title="在线阅读本书">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          在线阅读
+        </a>
+        {{ end }}
+        {{ if .Params.pdf_url }}
+        <a href="{{ .Params.pdf_url }}" class="hero-btn hero-btn-solid" title="下载 PDF 版">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF
+        </a>
+        {{ end }}
+        {{ if .Params.epub_url }}
+        <a href="{{ .Params.epub_url }}" class="hero-btn hero-btn-ghost" title="下载 EPUB 版">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          EPUB
+        </a>
+        {{ end }}
       </div>
     </div>
+  </div>
+  <a href="#book-toc-anchor" class="book-hero-scroll" aria-label="向下阅读">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+</section>
 
-    {{ $slug := .Section }}
-    {{ $toc := readFile (printf "data/%s/toc.html" $slug) }}
+{{/* ═══════════════ 独特观点 ═══════════════ */}}
+{{ if .Params.insights }}
+<section class="book-insights" id="book-toc-anchor">
+  <div class="book-insights-inner">
+    <div class="book-section-label">
+      <span class="book-hero-line"></span> 这本书的独特观点
+    </div>
+    <div class="book-insights-grid">
+      {{ range .Params.insights }}
+      <div class="book-insight-card">
+        <div class="book-insight-quote">“{{ .text }}”</div>
+        {{ if .note }}<div class="book-insight-note">{{ .note }}</div>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ═══════════════ 目录 ═══════════════ */}}
+<section class="book-toc">
+  <div class="toc-inner">
+    <div class="book-section-label">
+      <span class="book-hero-line"></span> 目录
+    </div>
     {{ if $toc }}
-      <nav class="toc-list">{{ $toc | safeHTML }}</nav>
+    <nav class="toc-list">{{ $toc | safeHTML }}</nav>
+    {{ else }}
+    {{/* 无 toc.html 时回退：列出所有章节 */}}
+    <nav class="toc-list">
+      {{ range .RegularPages }}
+      <div class="toc-chapter"><a class="toc-chapter-title" href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+      {{ end }}
+    </nav>
     {{ end }}
 
     {{ if .Params.douban }}
-      <div class="toc-douban">
-        <a href="{{ .Params.douban }}" target="_blank" rel="noopener">
-          📖 在豆瓣阅读更多书评 →
-        </a>
-      </div>
+    <div class="toc-douban">
+      <a href="{{ .Params.douban }}" target="_blank" rel="noopener">📖 在豆瓣阅读更多书评 →</a>
+    </div>
     {{ end }}
-    {{ end }}
-
   </div>
 </section>
+{{ end }}
 {{ end }}
