@@ -7,14 +7,62 @@
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+<script>
+(function(){
+  var KEY = 'osworks-theme';
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(KEY, t); } catch(e){}
+  }
+  function readSaved() {
+    try { return localStorage.getItem(KEY); } catch(e){ return null; }
+  }
+  var saved = readSaved();
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var initial = saved || (prefersDark ? 'dark' : 'light');
+  setTheme(initial);
+})();
+</script>
 </head>
 <body>
 <header class="topbar">
   <a class="topbar-brand" href="{{ "/" | relURL }}">「开源之道」· 作品</a>
   <span class="topbar-section">{{ .Section | humanize }}</span>
 </header>
+
+<button class="theme-toggle" id="themeToggle" title="切换白天/黑夜模式">
+  <span class="icon">☀︎</span>
+  <span class="label">白天</span>
+</button>
+
+<script>
+(function(){
+  var btn = document.getElementById('themeToggle');
+  var icon = btn.querySelector('.icon');
+  var label = btn.querySelector('.label');
+  function refresh() {
+    var t = document.documentElement.getAttribute('data-theme') || 'light';
+    if (t === 'dark') {
+      icon.textContent = '☾';
+      label.textContent = '黑夜';
+    } else {
+      icon.textContent = '☀︎';
+      label.textContent = '白天';
+    }
+  }
+  btn.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = (cur === 'dark') ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('osworks-theme', next); } catch(e){}
+    refresh();
+  });
+  refresh();
+})();
+</script>
+
 {{ block "main" . }}{{ end }}
 <footer>
   <div class="footer-inner">
