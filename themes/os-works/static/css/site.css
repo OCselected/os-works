@@ -1654,3 +1654,173 @@ body[data-theme="dark"]{ transition: background 0.35s ease, color 0.35s ease; }
 [data-theme="dark"] .path-article:hover{ color: var(--copper); background: rgba(228,117,82,0.1); }
 [data-theme="dark"] .chapter-nav a{ color: var(--c-muted); }
 [data-theme="dark"] .chapter-nav a:hover{ color: var(--copper); }
+/* ═══════════════════════════════════════════════════════════════════
+   DARK MODE FIX  (v2026-09-01 · 字体颜色全面修正)
+   根因：h1/h2/h3 等部分元素未单独设色，默认继承全局黑色；
+        chapter-body 内 h1/h2 用了深蓝 --c-prussian，与深色底不可区分
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 全局元素：覆盖默认黑色/深蓝 ── */
+[data-theme="dark"] h1{ color: var(--c-ink); }
+[data-theme="dark"] h2{ color: var(--c-ink); }
+[data-theme="dark"] h3{ color: var(--c-ink); }
+[data-theme="dark"] h4{ color: var(--c-ink); }
+[data-theme="dark"] h5{ color: var(--c-ink); }
+[data-theme="dark"] h6{ color: var(--c-ink); }
+[data-theme="dark"] p{ color: var(--c-ink); }
+[data-theme="dark"] a{ color: var(--c-accent); }
+[data-theme="dark"] strong{ color: var(--c-ink); }
+[data-theme="dark"] em{ color: var(--c-ink); }
+[data-theme="dark"] span{ color: var(--c-ink); }
+[data-theme="dark"] li{ color: var(--c-ink); }
+[data-theme="dark"] small{ color: var(--c-muted); }
+[data-theme="dark"] time{ color: var(--c-muted); }
+[data-theme="dark"] label{ color: var(--c-ink); }
+
+/* ── 修正 chapter-body 内部颜色（h1/h2 原本用 --c-prussian 深蓝，深色底不可见） ── */
+[data-theme="dark"] .chapter-body h1{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body h2{ color: var(--c-ink); border-left-color: var(--c-accent); }
+[data-theme="dark"] .chapter-body h3{ color: var(--c-accent); }
+[data-theme="dark"] .chapter-body h4{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body h5{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body strong{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body p{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body a{ color: var(--c-accent); }
+[data-theme="dark"] .chapter-body li{ color: var(--c-ink); }
+[data-theme="dark"] .chapter-body blockquote{ color: var(--c-ink); }
+
+/* ── 首页 hero 区 ── */
+[data-theme="dark"] .hero{ color: var(--c-ink); }
+[data-theme="dark"] .hero-title{ color: var(--c-ink); }
+[data-theme="dark"] .hero-meta{ color: var(--c-muted); }
+[data-theme="dark"] .hero-text{ color: var(--c-ink); }
+[data-theme="dark"] .hero-eyebrow{ color: var(--c-accent); }
+
+/* ── 页脚 ── */
+[data-theme="dark"] footer{ color: var(--c-ink); }
+[data-theme="dark"] footer a{ color: var(--c-accent); }
+
+/* ── 阅读侧栏 ── */
+[data-theme="dark"] .reader-toc{ color: var(--c-ink); }
+[data-theme="dark"] .reader-toc-header{ color: var(--c-ink); border-bottom-color: rgba(217,169,97,0.35); }
+[data-theme="dark"] .reader-toc-list a{ color: var(--c-ink); }
+[data-theme="dark"] .reader-toc-list a:hover{ color: var(--c-accent); }
+
+/* ── 确保正文所有文本在深色底上可读 ── */
+[data-theme="dark"] article{ color: var(--c-ink); }
+[data-theme="dark"] article h1,
+[data-theme="dark"] article h2,
+[data-theme="dark"] article h3,
+[data-theme="dark"] article h4,
+[data-theme="dark"] article h5,
+[data-theme="dark"] article h6{ color: var(--c-ink); }
+[data-theme="dark"] article p{ color: var(--c-ink); }
+[data-theme="dark"] article a{ color: var(--c-accent); }
+/* ═══════════════════════════════════════════════════════════════════
+   BOOKSHELF LAYOUT  (v2026-09-01 · 思想札记 · 书柜橱窗)
+   设计理念：thinking 是一部正在生长的书，按年份排列在书架上；
+             每篇文章是一本书，书脊朝外，可翻开阅读
+   ═══════════════════════════════════════════════════════════════════ */
+
+.bookshelf{ max-width: 1100px; margin: 0 auto; padding: 1rem 0 4rem; }
+.bookshelf-inner{ padding: 0 1rem; }
+
+.bookshelf-head{ text-align: center; margin-bottom: 2.5rem; }
+.bookshelf-title{ font-size: 1.9rem; font-weight: 700; color: var(--prussian); margin: 0 0 0.3rem; font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; }
+.bookshelf-sub{ font-size: 0.82rem; color: var(--copper); letter-spacing: 0.06em; }
+
+.bookshelf-intro{ max-width: 720px; margin: 0 auto 2rem; font-size: 0.92rem; line-height: 1.85; color: var(--muted); text-align: center; }
+
+/* ── 每一层书架 ── */
+.shelf-row{ margin-bottom: 2.5rem; }
+.shelf-row-head{
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 0.8rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(139,115,85,0.25);
+}
+.shelf-year{ font-size: 1.3rem; font-weight: 700; color: var(--copper); font-family: 'Cormorant Garamond', serif; }
+.shelf-count{ font-size: 0.78rem; color: var(--muted); }
+
+/* ── 书柜橱窗：一排书脊 ── */
+.shelf-cards{
+  display: flex; gap: 0.5rem; align-items: flex-end;
+  padding: 0.8rem 0;
+  background: linear-gradient(to bottom, transparent, rgba(139,115,85,0.06) 70%, rgba(139,115,85,0.12));
+  border-bottom: 2px solid rgba(139,115,85,0.35);
+  overflow-x: auto;
+}
+
+.book-card{
+  flex-shrink: 0;
+  width: 3.8rem;
+  min-height: 14rem;
+  display: flex;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.book-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.book-spine{
+  flex: 1; height: 100%;
+  background: linear-gradient(135deg, var(--prussian), #2c5a8c);
+  border-radius: 1px;
+  border-right: 1px solid rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0.8rem 0;
+  position: relative;
+  box-shadow: inset -3px 0 6px rgba(0,0,0,0.1), inset 3px 0 6px rgba(255,255,255,0.05);
+}
+.book-spine::before{
+  content: ''; position: absolute; top: 0.5rem; left: 0.3rem; right: 0.3rem;
+  height: 1px; background: var(--copper); opacity: 0.6;
+}
+.book-spine::after{
+  content: ''; position: absolute; bottom: 0.5rem; left: 0.3rem; right: 0.3rem;
+  height: 1px; background: var(--copper); opacity: 0.6;
+}
+.book-spine-text{
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.68rem;
+  color: var(--cream);
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  font-family: 'Noto Serif SC', serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 不同高度的书脊（视觉变化） */
+.book-card:nth-child(3n+1) .book-spine{ min-height: 13rem; background: linear-gradient(135deg, #8B5333, #A6704B); }
+.book-card:nth-child(3n+2) .book-spine{ min-height: 15rem; background: linear-gradient(135deg, var(--prussian), #3570AD); }
+.book-card:nth-child(3n) .book-spine{ min-height: 14.5rem; background: linear-gradient(135deg, #2D5F4F, #4A8C78); }
+
+.book-face{
+  display: none;
+  position: absolute; bottom: 100%; left: 0; right: 0;
+  margin-bottom: 0.4rem;
+  background: var(--cream);
+  border: 1px solid rgba(139,115,85,0.3);
+  border-radius: 2px;
+  padding: 0.6rem 0.6rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+.book-card:hover .book-face{ display: block; }
+.book-face-title{ font-size: 0.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.25rem; }
+.book-face-date{ font-size: 0.62rem; color: var(--copper); letter-spacing: 0.05em; }
+
+/* ── 深色模式 ── */
+[data-theme="dark"] .bookshelf-title{ color: var(--c-ink); }
+[data-theme="dark"] .bookshelf-sub{ color: var(--copper); }
+[data-theme="dark"] .bookshelf-intro{ color: var(--c-ink); opacity: 0.85; }
+[data-theme="dark"] .shelf-row-head{ border-bottom-color: rgba(217,169,97,0.3); }
+[data-theme="dark"] .shelf-year{ color: var(--copper); }
+[data-theme="dark"] .shelf-count{ color: var(--c-ink); opacity: 0.7; }
+[data-theme="dark"] .shelf-cards{ background: linear-gradient(to bottom, transparent, rgba(217,169,97,0.08) 70%, rgba(217,169,97,0.15)); border-bottom-color: rgba(217,169,97,0.35); }
+[data-theme="dark"] .book-card:hover{ box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
+[data-theme="dark"] .book-face{ background: var(--c-prussian); border-color: rgba(217,169,97,0.3); }
+[data-theme="dark"] .book-face-title{ color: var(--c-ink); }

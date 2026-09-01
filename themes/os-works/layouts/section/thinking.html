@@ -1,35 +1,41 @@
 {{ define "main" }}
-<section class="path-toc">
-  <div class="toc-inner">
-    <div class="path-head">
-      <h1 class="path-title">{{ .Title }}</h1>
-      <div class="path-sub">一条个人思考的路径 · A Path of Thinking</div>
-      <div class="path-stats">
-        <span class="path-stat"><b>{{ len .Pages }}</b> 篇札记</span>
-        <span class="path-stat"><b>{{ len (where .Pages "Section" "thinking") }}</b> 条路径</span>
-      </div>
+<section class="bookshelf">
+  <div class="bookshelf-inner">
+
+    <div class="bookshelf-head">
+      <h1 class="bookshelf-title">{{ .Title }}</h1>
+      <div class="bookshelf-sub">思想札记 · 一本正在生长的书 · {{ len .Pages }} 篇</div>
     </div>
+
     {{ if .Content }}
-    <div class="path-intro">{{ .Content }}</div>
+    <div class="bookshelf-intro">{{ .Content }}</div>
     {{ end }}
-    <div class="path-timeline">
-      {{ $years := (where .Pages "Section" "thinking").GroupByDate "2006" }}
-      {{ range $years.Reverse }}
-      {{ $year := .Key }}
-      <div class="path-node">
-        <span class="path-year">{{ $year }}</span>
-        <div class="path-content">
-          <span class="path-tag">年章 · {{ $year }}</span>
-          <h2 class="path-node-title">{{ $year }} 年的思考</h2>
-          <div class="path-articles">
-            {{ range .Pages.ByDate.Reverse }}
-            <a href="{{ .RelPermalink }}" class="path-article">{{ .Title }}</a>
-            {{ end }}
-          </div>
-        </div>
+
+    {{ $byYear := .Pages.GroupByDate "2006" }}
+    {{ range $byYear.Reverse }}
+    {{ $year := .Key }}
+    {{ $count := len .Pages }}
+    <div class="shelf-row">
+      <div class="shelf-row-head">
+        <span class="shelf-year">{{ $year }}</span>
+        <span class="shelf-count">{{ $count }} 篇</span>
       </div>
-      {{ end }}
+      <div class="shelf-cards">
+        {{ range .Pages.ByDate.Reverse }}
+        <a href="{{ .RelPermalink }}" class="book-card">
+          <div class="book-spine">
+            <span class="book-spine-text">{{ .Title | truncate 18 }}</span>
+          </div>
+          <div class="book-face">
+            <div class="book-face-title">{{ .Title }}</div>
+            <div class="book-face-date">{{ .Date.Format "01.02" }}</div>
+          </div>
+        </a>
+        {{ end }}
+      </div>
     </div>
+    {{ end }}
+
   </div>
 </section>
 {{ end }}
