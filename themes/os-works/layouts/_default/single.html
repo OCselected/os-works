@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $slug := .Section }}
-{{ $isBook := or (eq $slug "history") (eq $slug "network-wealth") (eq $slug "mystery") }}
+{{ $isBook := or (eq $slug "history") (eq $slug "thinking") (eq $slug "network-wealth") (eq $slug "mystery") }}
 
 {{ if not $isBook }}
 {{/* ── 非书类 section（thinking 等）：原始章节页布局 ── */}}
@@ -15,7 +15,9 @@
   <div class="chapter-body">{{ .Content }}</div>
 
   <nav class="chapter-nav">
-    {{ if eq .Section "network-wealth" }}
+    {{ if eq .Section "thinking" }}
+      <a href="/thinking/">← 目录 <span>开源之思 · 思想路径</span></a>
+    {{ else if eq .Section "network-wealth" }}
       <a href="/network-wealth/">← 目录 <span>网络的财富</span></a>
     {{ else }}
       <a href="/history/">← 目录 <span>开源之史</span></a>
@@ -32,7 +34,7 @@
     <div class="reader-toc-header">
       <a href="/{{ $slug }}/" class="reader-toc-home">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        {{ if eq $slug "network-wealth" }}网络的财富{{ else if eq $slug "mystery" }}开源之迷{{ else }}开源之史{{ end }}
+        {{ if eq $slug "thinking" }}开源之思 · 思想路径{{ else if eq $slug "network-wealth" }}网络的财富{{ else if eq $slug "mystery" }}开源之迷{{ else }}开源之史{{ end }}
       </a>
     </div>
     {{ if $toc }}

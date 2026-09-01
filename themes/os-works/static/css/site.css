@@ -1575,3 +1575,82 @@ body.dark .sort-btn:hover {
 
 /* 切换动画：body 淡入 */
 body[data-theme="dark"]{ transition: background 0.35s ease, color 0.35s ease; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PATH / READER LAYOUT  (v2026-09-01 · thinking-in-open-source)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Path TOC: 路径时间线 ── */
+.path-toc{ max-width: 1000px; margin: 0 auto; padding: 1rem 0 4rem; }
+.path-head{ text-align: center; margin-bottom: 3rem; }
+.path-title{ font-size: 1.9rem; font-weight: 700; color: var(--prussian); }
+.path-sub{ color: var(--copper); margin-top: 0.4rem; font-size: 0.88rem; letter-spacing: 0.04em; }
+.path-stats{ display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.path-stat{ font-size: 0.8rem; color: var(--muted); }
+.path-stat b{ color: var(--prussian); font-weight: 600; }
+
+.path-legend{ display: flex; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.legend-item{ display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); cursor: pointer; }
+.legend-dot{ width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+.path-timeline{ position: relative; padding: 0.5rem 0 2rem; }
+.path-timeline::before{
+  content: '';
+  position: absolute; left: 1.6rem; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--copper), var(--prussian));
+  opacity: 0.5;
+}
+.path-node{
+  position: relative; padding-left: 4rem; margin-bottom: 2.2rem;
+  display: flex; align-items: flex-start; gap: 1.2rem;
+}
+.path-node::before{
+  content: ''; position: absolute; left: 1.02rem; top: 0.45rem;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--copper); border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--copper);
+  z-index: 2;
+}
+.path-year{
+  flex-shrink: 0; width: 2.6rem; text-align: right;
+  font-size: 0.82rem; font-weight: 700; color: var(--copper);
+  font-family: 'Cormorant Garamond', serif;
+  padding-top: 0.15rem;
+}
+.path-content{ flex: 1; min-width: 0; }
+.path-tag{ display: inline-block; font-size: 0.7rem; letter-spacing: 0.04em; color: var(--prussian); margin-bottom: 0.3rem; padding: 0.05rem 0; }
+.path-node-title{ font-size: 1.02rem; font-weight: 600; color: var(--ink); margin: 0.15rem 0 0.3rem; line-height: 1.3; }
+.path-articles{ display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+.path-article{ display: inline-block; font-size: 0.8rem; color: var(--muted); padding: 0.15rem 0.55rem; background: var(--cream); border-radius: 2px; text-decoration: none; transition: color 0.2s, background 0.2s; }
+.path-article:hover{ color: var(--copper); background: rgba(228,117,82,0.06); }
+
+/* ── Reader Layout (复用 history 在线阅读框架) ── */
+.reader-layout{ display: grid; grid-template-columns: 300px 1fr; gap: 2rem; padding: 1rem 0 0; max-width: 1200px; margin: 0 auto; }
+.reader-toc{ height: calc(100vh - 80px); overflow-y: auto; position: sticky; top: 0; padding-right: 0.5rem; }
+.reader-toc .toc-header{ font-size: 0.85rem; font-weight: 600; color: var(--prussian); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(139,115,85,0.2); }
+.reader-toc .path-node{ padding-left: 2rem; margin-bottom: 1.5rem; }
+.reader-toc .path-year{ width: auto; font-size: 0.75rem; color: var(--copper); font-weight: 700; margin-bottom: 0.15rem; }
+.reader-toc .path-tag{ font-size: 0.65rem; margin-bottom: 0.1rem; }
+.reader-toc .path-node-title{ font-size: 0.82rem; font-weight: 400; color: var(--muted); cursor: pointer; padding: 0.1rem 0; }
+.reader-toc .path-node-title:hover{ color: var(--copper); }
+.reader-toc .path-node-title.active{ color: var(--prussian); font-weight: 600; border-left: 2px solid var(--copper); padding-left: 0.5rem; margin-left: -0.5rem; }
+
+.reader-main{ max-width: 720px; padding-right: 2rem; }
+
+/* ── Chapter Nav (上/下篇) ── */
+.chapter-nav{ display: flex; justify-content: space-between; gap: 1rem; margin: 2.5rem 0 0; padding: 1.2rem 0; border-top: 1px solid rgba(139,115,85,0.15); }
+.chapter-nav a{ color: var(--muted); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; flex: 1; }
+.chapter-nav a:hover{ color: var(--copper); }
+.chapter-nav a.next{ text-align: right; }
+
+/* ── Dark theme ── */
+[data-theme="dark"] .path-title{ color: var(--c-ink); }
+[data-theme="dark"] .path-node-title{ color: var(--c-ink); }
+[data-theme="dark"] .path-node::before{ background: var(--copper); border-color: var(--c-prussian); }
+[data-theme="dark"] .path-year{ color: var(--copper); }
+[data-theme="dark"] .path-tag{ color: var(--c-ink); }
+[data-theme="dark"] .path-article{ color: var(--c-ink); background: var(--c-prussian); }
+[data-theme="dark"] .path-article:hover{ color: var(--copper); background: rgba(228,117,82,0.1); }
+[data-theme="dark"] .chapter-nav a{ color: var(--c-muted); }
+[data-theme="dark"] .chapter-nav a:hover{ color: var(--copper); }

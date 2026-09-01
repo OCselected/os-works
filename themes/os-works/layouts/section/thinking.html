@@ -1,41 +1,35 @@
 {{ define "main" }}
-{{/* thinking section 列表页 — TOC 风格（与 history 的 book-toc 对齐） */}}
-<section class="book-toc">
+<section class="path-toc">
   <div class="toc-inner">
-
-    <div class="toc-header">
-      <div class="toc-header-inner">
-        {{ if .Params.cover }}
-        <div class="toc-cover">
-          <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }} 封面">
-        </div>
-        {{ end }}
-        <div class="toc-header-text">
-          <h1>{{ .Title }}</h1>
-          <div class="toc-meta">
-            {{ if .Params.author }}<span>作者：{{ .Params.author }}</span>{{ end }}
-            {{ if .Params.author }}<span>·</span>{{ end }}
-            <span>{{ len .Pages }} 篇札记</span>
-            {{ if .Params.description }}<span>·</span>{{ end }}
-            {{ if .Params.description }}<span>{{ .Params.description }}</span>{{ end }}
+    <div class="path-head">
+      <h1 class="path-title">{{ .Title }}</h1>
+      <div class="path-sub">一条个人思考的路径 · A Path of Thinking</div>
+      <div class="path-stats">
+        <span class="path-stat"><b>{{ len .Pages }}</b> 篇札记</span>
+        <span class="path-stat"><b>{{ len (where .Pages "Section" "thinking") }}</b> 条路径</span>
+      </div>
+    </div>
+    {{ if .Content }}
+    <div class="path-intro">{{ .Content }}</div>
+    {{ end }}
+    <div class="path-timeline">
+      {{ $years := (where .Pages "Section" "thinking").GroupByDate "2006" }}
+      {{ range $years.Reverse }}
+      {{ $year := .Key }}
+      <div class="path-node">
+        <span class="path-year">{{ $year }}</span>
+        <div class="path-content">
+          <span class="path-tag">年章 · {{ $year }}</span>
+          <h2 class="path-node-title">{{ $year }} 年的思考</h2>
+          <div class="path-articles">
+            {{ range .Pages.ByDate.Reverse }}
+            <a href="{{ .RelPermalink }}" class="path-article">{{ .Title }}</a>
+            {{ end }}
           </div>
         </div>
       </div>
-    </div>
-
-    {{ if .Content }}
-    <div class="toc-intro">{{ .Content }}</div>
-    {{ end }}
-
-    <nav class="toc-list">
-      {{ range .Pages.ByDate.Reverse }}
-      <a href="{{ .RelPermalink }}" class="toc-item">
-        <span class="toc-item-date">{{ .Date.Format "2006-01-02" }}</span>
-        <span class="toc-item-title">{{ .Title }}</span>
-      </a>
       {{ end }}
-    </nav>
-
+    </div>
   </div>
 </section>
 {{ end }}
