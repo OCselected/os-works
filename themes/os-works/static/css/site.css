@@ -1536,7 +1536,7 @@ body.dark .sort-btn:hover {
   position: fixed;
   top: 0.15rem;
   right: clamp(1.5rem, 4vw, 5rem);
-  z-index: 99;
+  z-index: 200;
   background: var(--bg-card, var(--cream));
   border: 1px solid rgba(139,115,85,0.35);
   border-radius: 999px;
